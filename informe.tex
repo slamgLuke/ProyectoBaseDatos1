@@ -1,0 +1,117 @@
+% give me a starting template for a latex report with a table of contents 2 chapters long
+
+\documentclass[12pt]{article}
+
+\title{Avance 1 - Proyecto Base de Datos I}
+\author{Grupo ...}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Requisitos}
+
+\subsection{Introducci\'on}
+
+En este proyecto se desea desarrollar una base de datos para una tienda de autos que se dedica a la compra de vehículos de otras empresas, nuevos y seminuevos, para revenderlos al público. La tienda se basa en tiendas como <nombre de tienda> y tiene como objetivo ofrecer vehículos asequibles para el peruano promedio. Debido a la naturaleza de constante rotación de mercancía es necesario modelar una base de datos robusta que permita la entrada de los vehículos adquiridos y la fácil y eficiente consulta de aquellos que están en stock. 
+
+\subsection{Descripci\'on general del problema/organizaci\'on/empresa}
+
+La necesidad de vehículos motorizados es importante en la ciudad de Lima, ya que el transporte público no está muy desarrollado. La tienda de autos busca solucionar esta necesidad ofreciendo vehículos nuevos y seminuevos a precios accesibles, al obtenerlos en suministros de gran cantidad directamente de diversas empresas distribuidoras de vehiculos, o que venden sus flotas usadas de trabajo.
+
+El problema recae en el monitoreo y manejo de la información de esta gran cantidad de vehiculos que rota constantemente en el stock de la tienda. Al usar métodos tradicionales como registros a mano, se requiere mucho tiempo al realizar la compra y venta de vehículos, es difícil para el cliente saber qué tiene la tienda a la venta, existe la posibilidad de error en la lectura y escritura, y se pierde la posibilidad de análisis estadístico de las ventas de la empresa (para obtener un mayor márgen de ganancia/más ventas).
+
+\subsection{Necesidad/usos de la base de datos}
+
+La base de datos es necesaria para llevar un control de los vehículos que se compran, se venden y los que se encuentran en inventario, así como también para llevar un registro de los clientes, los asesores de venta y los proveedores.
+
+\subsection{¿Cómo resuelve el problema de hoy?}
+
+La tienda actualmente lleva un registro manual de los vehículos, los clientes y las ventas, lo cual es un proceso lento y propenso a errores. La base de datos ayudará a mejorar el proceso de registro y seguimiento de los vehículos, clientes y ventas. La implementación de la base de datos en la tienda es la solución.
+
+\subsubsection{¿Cómo se almacenan/procesan los datos hoy?}
+
+Actualmente los datos se almacenan en archivos físicos (papel) y en hojas de cálculo en línea (Excel). No hay una base de datos centralizada y el proceso de registro de los vehículos, clientes y ventas se hace manualmente. La consulta de datos se hace igualmente de forma manual.
+
+\subsubsection{Flujo de datos}
+
+El flujo de datos actual comienza con el suministro de vehículos realizado por parte de los proveedores, seguido de la recepción de los vehículos por parte de la tienda. En caso de que el modelo o motor del vehículo no estén registrados, se tienen que añadir previamente a las tablas correspondientes. A continuación, los vehículos son agregados al inventario de la tienda. Los clientes consultan el inventario y realizan compras, supervisadas por los asesores de ventas. Por último, la orden de compra es registrada y el vehiculo deja de ser mostrado en el inventario de la tienda. Los clientes pueden consultar el historial de compras que han realizado ellos.
+
+\subsection{Descripci\'on detallada del sistema}
+
+\subsubsection{Objetivos de información actuales}
+
+Los objetivos de información actuales son llevar un control de los vehículos en inventario (tanto en la compra y venta de estos), permitir a los clientes consultar los vehículos disponibles, llevar control de las compras que remueven (u ocultan) a los vehículos de la base de datos.
+
+\subsubsection{Caracter\'isticas y funcionalidades esperadas}
+
+Se espera que la base de datos permita llevar un registro de los vehículos en inventario, de los clientes y de las ventas realizadas. También se espera que permita generar reportes y estadísticas sobre el inventario, las ventas y los clientes.
+
+\subsubsection{Tipos de usuarios existentes/necesarios}
+
+Los tipos de usuarios necesarios son los asesores de ventas, los clientes y los proveedores. Se espera que el proveedor brinde la información requerida de cada vehículo suministrado, la cual será incorporada en la base de datos. Así se elimina la necesidad de añadir manualmente con un administrador.
+
+\subsubsection{Tipos de consulta, actualizaciones}
+
+Los tipos de consulta y actualización que se esperan por parte de los clientes son: Consulta del stock (vehículos),  consulta de las compras realizadas. Actualización (Eliminar/ocultar) la lista de vehículos al realizar la compra, registro de la compra.
+
+Los proveedores registran la lista de vehículos al realizar el suministro. Igualmente registran en motor y modelo cuando se añaden vehículos con estos no presentes.
+
+son consultas de inventario, consultas de clientes y consultas de ventas realizadas. Las actualizaciones que se esperan son actualizaciones de inventario, actualizaciones de clientes y actualizaciones de ventas realizadas.
+
+\subsubsection{Tama\~no de la base de datos}
+
+El tamaño de la base de datos es directamente proporcional al tamaño del negocio, así como la frecuencia de las ventas. El tamaño del negocion nos da una perspectiva de la cantidad de vehículos en stock por vez, y la frecuencia de las ventas nos da una perspectiva de la tasa de crecimiento de las tablas de clientes y compras.
+
+Para el caso de una tienda de un solo local, se estima un stock de hasta 50 vehículos, y una frecuencia de venta de una por semana.
+
+Para una tienda de más de un local, con una unidad de almacenamiento central, se puede tener un stock probablemente desde 100 hasta 250 vehiculos por vez, y con ventas y nuevos clientes cada 2-3 días.
+
+Para una tienda a escala nacional con múltiples puntos de almacenamiento, se estima un stock mayor a 1000 vehículos, con ventas y nuevos clientes todos los días útiles.
+
+\subsection{Objetivos del proyecto}
+\subsection{Referencias del proyecto}
+\subsection{Eventualidades}
+
+\subsubsection{Problemas que pudieran encontrarse en el proyecto}
+\subsubsection{Limites y alcances del proyecto}
+
+
+\section{Modelo Entidad-Relaci\'on}
+
+\subsection{Reglas sem\'anticas}
+\subsection{Modelo Entidad-Relaci\'on}
+\subsection{Especificaciones y conseideraciones sobre el modelo}
+
+\subsubsection{Entidadad Persona}
+\subsubsection{Entidadad Cliente}
+\subsubsection{Entidadad Asesor}
+\subsubsection{Entidadad Proveedor}
+\subsubsection{...}
+% Aqui van las demas entidades
+
+\section{Modelo Relacional}
+
+\subsection{Modelo Relacional}
+\subsection{Especificaciones de transformaci\'on}
+
+\subsubsection{Entidades}
+\subsubsection{Entidades d\'ebiles}
+\subsubsection{Entidades superclase/subclase}
+\subsubsection{Relaciones binarias}
+\subsubsection{Relaciones ternarias}
+
+\subsection{Diccionario de datos}
+
+\end{document}
