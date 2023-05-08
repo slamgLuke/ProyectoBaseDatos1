@@ -181,6 +181,7 @@ A continuación, el modelo entidad-relación que representa la base de datos:
 \textbf{Especificaciones}
 
 Clase padre de Cliente, Asesor, Mecánico y Proveedor. Contiene la información necesaria para identificarlos como sus Nombres y Apellidos, y su llave primaria es el DNI.
+
 \textbf{Consideraciones}
 
 Se usa el DNI como llave primaria por la posibilidad de homonimia y la facilidad que este provee como identificador único.
@@ -189,6 +190,7 @@ Se usa el DNI como llave primaria por la posibilidad de homonimia y la facilidad
 \textbf{Especificaciones}
 
 Contiene información específica del cliente, como su dirección, correo electrónico y teléfono, y su llave primaria es el DNI.
+
 \textbf{Consideraciones}
 
 Un cliente puede tener múltiples vehículos, por lo que se establece una relación entre las entidades Cliente y Vehículo.
@@ -197,6 +199,7 @@ Un cliente puede tener múltiples vehículos, por lo que se establece una relaci
 \textbf{Especificaciones}
 
 Contiene información específica del asesor, como su número de empleado y fecha de contratación, y su llave primaria es el DNI.
+
 \textbf{Consideraciones}
 
 Un asesor puede atender a múltiples clientes y vehículos, por lo que se establece una relación entre las entidades Asesor, Cliente y Vehículo.
@@ -205,6 +208,7 @@ Un asesor puede atender a múltiples clientes y vehículos, por lo que se establ
 \textbf{Especificaciones}
 
 Contiene información específica del mecánico, como su número de empleado y especialidad, y su llave primaria es el DNI.
+
 \textbf{Consideraciones}
 
 Un mecánico puede trabajar en múltiples servicios y vehículos, por lo que se establece una relación entre las entidades Mecánico, ServicioPostVenta y Vehículo.
@@ -213,6 +217,7 @@ Un mecánico puede trabajar en múltiples servicios y vehículos, por lo que se 
 \textbf{Especificaciones}
 
 Contiene información específica del proveedor, como su dirección y número de contacto, y su llave primaria es su nombre.
+
 \textbf{Consideraciones}
 
 Un proveedor puede proveer múltiples suministros, por lo que se establece una relación entre las entidades Proveedor y Suministro.
@@ -221,6 +226,7 @@ Un proveedor puede proveer múltiples suministros, por lo que se establece una r
 \textbf{Especificaciones}
 
 Contiene información específica de la empresa, como su nombre y dirección, y su llave primaria es su nombre.
+
 \textbf{Consideraciones}
 
 Una empresa puede tener múltiples proveedores y empleados, por lo que se establece una relación entre las entidades Empresa, Proveedor y Persona.
@@ -229,6 +235,7 @@ Una empresa puede tener múltiples proveedores y empleados, por lo que se establ
 \textbf{Especificaciones}
 
 Contiene información específica del suministro, como su nombre y precio, y su llave primaria es su nombre.
+
 \textbf{Consideraciones}
 
 Un suministro puede ser proporcionado por múltiples proveedores, por lo que se establece una relación entre las entidades Proveedor y Suministro.
@@ -245,6 +252,7 @@ Una compra puede incluir múltiples suministros y ser realizada por múltiples e
 \textbf{Especificaciones}
 
 Contiene información específica de cada vehículo que se ha tenido en stock, como su marca y modelo, y su llave primaria es su número de identificación.
+
 \textbf{Consideraciones}
 
 
@@ -498,6 +506,7 @@ Clave Foránea & N/A \\
 
 \subsection{Diccionario de datos}
 
+Asesor
 \begin{table}[htbp]
     \begin{center}
     \begin{tabular}{|l|l|l|l|l|}
@@ -512,6 +521,226 @@ Clave Foránea & N/A \\
         \hline
         \end{tabular}
         \caption{Tabla Asesor}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Mecanico
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            DNI & VARCHAR(8) & X &  & Número de identificación del mecánico \\
+            Nombres & VARCHAR(50) &  &  & Nombres del mecánico \\
+            Apellidos & VARCHAR(50) &  &  & Apellidos del mecánico \\
+            RUC & VARCHAR(11) &  &  & Registro Único del Contribuyente del mecánico \\
+            Salario & FLOAT &  &  & Salario del mecánico \\
+            \hline
+            \end{tabular}
+        \caption{Tabla Mecanico}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Cliente
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            DNI & VARCHAR(8) & X &  & Número de identificación del cliente \\
+            Nombres & VARCHAR(50) &  &  & Nombres del cliente \\
+            Apellidos & VARCHAR(50) &  &  & Apellidos del cliente \\
+            \hline
+            \end{tabular}
+        \caption{Tabla Cliente}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Proveedor
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            DNI & VARCHAR(8) & X &  & Número de identificación del proveedor \\
+            Nombres & VARCHAR(50) &  &  & Nombres del proveedor \\
+            Apellidos & VARCHAR(50) &  &  & Apellidos del proveedor \\
+            Empresa.RUC & VARCHAR(11) &  & X & Registro Único del Contribuyente de la empresa proveedora \\
+            \hline
+            \end{tabular}
+        \caption{Tabla Proveedor}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Empresa
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            RUC & VARCHAR(8) & X &  & Registro Único del Contribuyente de la empresa \\
+            RazonSocial & VARCHAR(100) &  &  & Razón social de la empresa \\
+            \hline
+            \end{tabular}
+        \caption{Tabla Empresa}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Compra
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            Cliente.DNI & VARCHAR(8) & X & X & Documento de identificación del cliente\\
+            Código & INT &  &  & Código de la compra \\
+            Vehículo.VIN & VARCHAR(17) &  & X & Número de identificación del vehículo comprado \\
+            Asesor.DNI & VARCHAR(8) &  & X & Número de identificación del asesor encargado de la venta \\
+            Fecha & DATE &  &  & Fecha de la compra \\
+            \hline
+        \end{tabular}
+        \caption{Tabla Compra}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Suministro
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            Proveedor.DNI & VARCHAR(8) &  & X & Número de identificación del proveedor \\
+            Código & INT &  &  & Código del suministro \\
+            Fecha & DATE &  &  & Fecha del suministro \\
+            Importe & FLOAT &  &  & Importe del suministro \\
+            \hline
+            \end{tabular}
+        \caption{Tabla Suministro}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Vehiculo 
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            VIN & VARCHAR(17) & X &  & Número de identificación del vehículo \\
+            Color & VARCHAR(20) &  &  & Color del vehículo \\
+            Precio & FLOAT &  &  & Precio del vehículo \\
+            Kilometraje & INT &  &  & Kilometraje del vehículo \\
+            Transmisión & VARCHAR(10) &  &  & Tipo de transmisión del vehículo \\
+            Motor.Código & VARCHAR(20) &  & X & Código del motor del vehículo \\
+            Modelo.ID & INT &  & X & ID del modelo del vehículo \\
+            Modelo.Categoria & VARCHAR(20) &  &  & Categoría del modelo del vehículo \\
+            \hline
+            \end{tabular}
+        \caption{Tabla Vehiculo}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Motor
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            Código & VARCHAR(20) & X &  & Código del motor \\
+            Marca & VARCHAR(20) &  &  & Marca del motor \\
+            Combustible & VARCHAR(20) &  &  & Tipo de combustible del motor \\
+            Cilindros & INT &  &  & Número de cilindros del motor \\
+            Cilindrada & INT &  &  & Cilindrada del motor \\
+            Potencia & INT &  &  & Potencia del motor \\
+            \hline
+            \end{tabular}
+        \caption{Tabla Motor}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+Modelo 
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            ID & INT & X &  & ID del modelo \\
+            Marca & VARCHAR(20) &  &  & Marca del modelo \\
+            Nombre & VARCHAR(20) &  &  & Nombre del modelo \\
+            Año & INT &  &  & Año del modelo \\
+            PrecioSugerido & FLOAT &  &  & Precio sugerido del del auto\\
+            \hline
+        \end{tabular}
+        \caption{Tabla Modelo}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+ServicioPostventa
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            Cliente.DNI & VARCHAR(8) &  & X & Número de identificación del cliente \\
+            Orden & INT & X &  & Número de orden del servicio postventa \\
+            Fecha & DATE &  &  & Fecha del servicio postventa \\
+            Tipo & VARCHAR(15) &  &  & Tipo de servicio postventa \\
+            Costo & FLOAT &  &  & Costo del servicio postventa \\
+            \hline
+        \end{tabular}
+        \caption{Tabla ServicioPostventa}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+m\_inspecciona
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            Mecanico.DNI & VARCHAR(8) &  & X & Número de identificación del mecánico \\
+            Vehiculo.VIN & VARCHAR(17) &  & X & Número de identificación del vehículo inspeccionado \\
+            Fecha & DATE &  &  & Fecha de la inspección \\
+            \hline
+        \end{tabular}
+        \caption{Tabla m\_inspecciona}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
+
+m\_realiza
+\begin{table}[htbp]
+    \begin{center}
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            \hline
+            Mecanico.DNI & VARCHAR(8) &  & X & Número de identificación del mecánico \\
+            ServicioPostventa.Orden & INT &  & X & Número de orden del servicio postventa realizado por el mecánico \\
+            \hline
+            \end{tabular}
+        \caption{Tabla m\_realiza}
         \label{tab:tablas}
     \end{center}
 \end{table}

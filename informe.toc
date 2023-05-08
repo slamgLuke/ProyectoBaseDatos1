@@ -25,17 +25,17 @@
 \contentsline {subsubsection}{\numberline {2.3.3}Entidad Asesor}{10}{subsubsection.2.3.3}%
 \contentsline {subsubsection}{\numberline {2.3.4}Entidad Mecánico}{10}{subsubsection.2.3.4}%
 \contentsline {subsubsection}{\numberline {2.3.5}Entidad Proveedor}{10}{subsubsection.2.3.5}%
-\contentsline {subsubsection}{\numberline {2.3.6}Entidad Empresa}{10}{subsubsection.2.3.6}%
+\contentsline {subsubsection}{\numberline {2.3.6}Entidad Empresa}{11}{subsubsection.2.3.6}%
 \contentsline {subsubsection}{\numberline {2.3.7}Entidad Suministro}{11}{subsubsection.2.3.7}%
 \contentsline {subsubsection}{\numberline {2.3.8}Entidad Compra}{11}{subsubsection.2.3.8}%
 \contentsline {subsubsection}{\numberline {2.3.9}Entidad Vehículo}{11}{subsubsection.2.3.9}%
-\contentsline {subsubsection}{\numberline {2.3.10}Entidad Modelo}{11}{subsubsection.2.3.10}%
-\contentsline {subsubsection}{\numberline {2.3.11}Entidad ServicioPostVenta}{11}{subsubsection.2.3.11}%
+\contentsline {subsubsection}{\numberline {2.3.10}Entidad Modelo}{12}{subsubsection.2.3.10}%
+\contentsline {subsubsection}{\numberline {2.3.11}Entidad ServicioPostVenta}{12}{subsubsection.2.3.11}%
 \contentsline {section}{\numberline {3}Modelo Relacional}{12}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Modelo Relacional}{12}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Especificaciones de transformaci\'on}{13}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Entidades}{13}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Entidades d\'ebiles}{13}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Entidades superclase/subclase}{13}{subsubsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.4}Relaciones binarias}{13}{subsubsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.3}Diccionario de datos}{13}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.2.2}Entidades d\'ebiles}{15}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Entidades superclase/subclase}{15}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Relaciones binarias}{15}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Diccionario de datos}{15}{subsection.3.3}%
