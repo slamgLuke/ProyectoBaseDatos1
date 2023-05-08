@@ -24,7 +24,7 @@
 
 \subsection{Introducci\'on}
 
-En este proyecto se desea desarrollar una base de datos para una tienda de autos que se dedica a la compra de vehículos de otras empresas, nuevos y seminuevos, para revenderlos al público. La tienda se basa en tiendas como <nombre de tienda> y tiene como objetivo ofrecer vehículos asequibles para el peruano promedio. Debido a la naturaleza de constante rotación de mercancía es necesario modelar una base de datos robusta que permita la entrada de los vehículos adquiridos y la fácil y eficiente consulta de aquellos que están en stock. 
+En este proyecto se desea desarrollar una base de datos para una tienda de autos que se dedica a la compra de vehículos de otras empresas, nuevos y seminuevos, para revenderlos al público. Se basa en la base de datos para la tienda de autos "Autoland" y tiene como objetivo ofrecer vehículos asequibles para el peruano promedio. Debido a la naturaleza de constante rotación de mercancía es necesario modelar una base de datos robusta que permita la entrada de los vehículos adquiridos y la fácil y eficiente consulta de aquellos que están en stock. 
 
 \subsection{Descripci\'on general del problema/organizaci\'on/empresa}
 
@@ -70,6 +70,13 @@ Los proveedores registran la lista de vehículos al realizar el suministro. Igua
 
 son consultas de inventario, consultas de clientes y consultas de ventas realizadas. Las actualizaciones que se esperan son actualizaciones de inventario, actualizaciones de clientes y actualizaciones de ventas realizadas.
 
+
+\subsubsection{Tama\~no de la base de datos}
+
+El tamaño de la base de datos es directamente proporcional al tamaño del negocio, así como la frecuencia de las ventas. El tamaño del negocion nos da una perspectiva de la cantidad de vehículos en stock por vez, y la frecuencia de las ventas nos da una perspectiva de la tasa de crecimiento de las tablas de clientes y compras.
+
+En el caso de autoland, estimamos unas 40 ventas por mes, y aproximadamente 5000 ventas anuales. Esto nos da un estimado de una entrada de al menos 100 000 datos anuales, incluyendo la información de los suministros, los clientes, las compras, y las especificaciones de los vehículos.
+
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Tabla} & \textbf{Tamaño de atributos} & \textbf{Total} \\ \hline
@@ -83,11 +90,6 @@ Vehículo      & 10                           & 10             \\ \hline
 Motor         & 10                           & 10             \\ \hline
 Modelo        & 10                           & 10             \\ \hline
 \end{tabular}
-\subsubsection{Tama\~no de la base de datos}
-
-El tamaño de la base de datos es directamente proporcional al tamaño del negocio, así como la frecuencia de las ventas. El tamaño del negocion nos da una perspectiva de la cantidad de vehículos en stock por vez, y la frecuencia de las ventas nos da una perspectiva de la tasa de crecimiento de las tablas de clientes y compras.
-
-En el caso de autoland, estimamos unas 40 ventas por mes, y aproximadamente 5000 ventas anuales. Esto nos da un estimado de una entrada de al menos 100 000 datos anuales, incluyendo la información de los suministros, los clientes, las compras, y las especificaciones de los vehículos.
 
 \subsection{Objetivos del proyecto}
 
@@ -107,11 +109,19 @@ Nuestro proyecto cuenta con las siguientes posibles problemas:
 
 \item No se incluye un sistema de autenticación de usuarios, por lo que no se puede distinguir entre los diferentes tipos de usuarios (clientes, asesores de ventas, proveedores) cuando se filtre por su llave única (DNI).
 
-\item La base de datos no considera servicios de mantenimiento, ni de reparación de vehículos.
+\item La base de datos no considera servicios de garantía, por lo que no se puede llevar un registro de los servicios de garantía que se ofrecen a los clientes.
 
-\item Se ha priorizado el entendimiento del modelo por encima de la eficiencia de las consultas, por lo que el tiempo de consultas puede no ser el ideal.
+\item Se ha priorizado el entendimiento del modelo por encima de la eficiencia de las consultas, por lo que el tiempo de consultas puede no ser el mejor posible. Aún así, se ha intentado optimizar las consultas para que sean lo más eficientes posibles.
 
+\item No existe la posibilidad de comprar más de un vehículo por compra.
 
+\item No se considera la posibilidad de contratar a empleados extranjeros que no cuenten con DNI. Tampoco la posibilidad de vender a ciudadanos no peruanos o vender directamente a personas jurídicas (empresas).
+
+\item Los clientes no pueden dar su vehículo como parte de pago para la compra de otro vehículo.
+
+\item La tienda no puede obtener vehículos de personas naturales (individuos).
+
+\item No se mantiene un registro de las piezas usadas en el mantenimiento y reparación de los vehículos en los servicios de postventa.
 
 \end{itemize}
 
@@ -122,7 +132,7 @@ Nuestro proyecto cuenta con las siguientes posibles problemas:
 
 \item Alcances
 
-Este proyecto tendrá un alcance a cualquier tienda con un modelo de negocio compatible dentro del país, y se espera que sea usada por una tienda de venta de vehículos como Autoland, la cual cuenta con sedes en diversos distritos de la ciudad de Lima Metropolitana.
+Este proyecto tendrá un alcance a cualquier tienda con un modelo de negocio compatible al de Autoland dentro del país, y se espera que sea usada por una tienda de venta de vehículos como Autoland, la cual cuenta con sedes en diversos distritos de la ciudad de Lima Metropolitana.
 
 \item Limites
 
@@ -157,6 +167,7 @@ A continuación, las reglas semánticas que definen el fucionamiento de la base 
 \item Los vehículos, si son usados, tienen kilometraje. Si son nuevos, este será 0.
 \item Todos los vehículos son inspeccionados por uno o más mecánicos, se registra la fecha de inspección.
 \item Todos los vehículos cuentan con una transmisión.
+\item Se debe registrar si los vehículos se encuentra en stock o no. Cuando se adquiere un vehículo, está en stock, y cuando se vende, deja de estarlo.
 \item La transmisión puede ser de 3 tipos: automática, manual o secuencial.
 \item Los vehículos cuentan con un solo motor. Un tipo de motor puede encontrarse en muchos vehículos, o igualmente, en ninguno.
 \item El motor se identifica por su código alfanumérico correspondiente a su modelo. Además se identifica por su marca, tipo de combustible, número de cilindros, cilindrada, y finalmente, la potencia.
@@ -189,34 +200,34 @@ Se usa el DNI como llave primaria por la posibilidad de homonimia y la facilidad
 \subsubsection{Entidad Cliente}
 \textbf{Especificaciones}
 
-Contiene información específica del cliente, como su dirección, correo electrónico y teléfono, y su llave primaria es el DNI.
+Subclase de Persona usada para los Clientes, no contiene atributos adicionales. Su llave primaria es el DNI.
 
 \textbf{Consideraciones}
 
-Un cliente puede tener múltiples vehículos, por lo que se establece una relación entre las entidades Cliente y Vehículo.
+Un cliente puede realizar múltiples compras y acceder a múltiples servicios de postventa, por lo que se establece una relación entre las entidades Cliente, Compra y ServicioPostVenta.
 
 \subsubsection{Entidad Asesor}
 \textbf{Especificaciones}
 
-Contiene información específica del asesor, como su número de empleado y fecha de contratación, y su llave primaria es el DNI.
+Contiene información específica del asesor, como su Salario y su RUC personal, y su llave primaria es el DNI.
 
 \textbf{Consideraciones}
 
-Un asesor puede atender a múltiples clientes y vehículos, por lo que se establece una relación entre las entidades Asesor, Cliente y Vehículo.
+Un asesor puede atender múltiples compras, por lo que se establece una relación entre las entidades Asesor y Compra. 
 
 \subsubsection{Entidad Mecánico}
 \textbf{Especificaciones}
 
-Contiene información específica del mecánico, como su número de empleado y especialidad, y su llave primaria es el DNI.
+Contiene información específica del mecánico, como su Salario y RUC personal, y su llave primaria es el DNI.
 
 \textbf{Consideraciones}
 
-Un mecánico puede trabajar en múltiples servicios y vehículos, por lo que se establece una relación entre las entidades Mecánico, ServicioPostVenta y Vehículo.
+Un mecánico puede realizar múltiples servicios de postventa, por lo que se establece una relación entre las entidades Mecánico y ServicioPostVenta. Igulamente puede realizar inspecciones a los vehiculos, por lo que se establece la relación con Vehículo.
 
 \subsubsection{Entidad Proveedor}
 \textbf{Especificaciones}
 
-Contiene información específica del proveedor, como su dirección y número de contacto, y su llave primaria es su nombre.
+Contiene información específica del proveedor, como su , y su llave primaria es su nombre.
 
 \textbf{Consideraciones}
 
@@ -225,49 +236,57 @@ Un proveedor puede proveer múltiples suministros, por lo que se establece una r
 \subsubsection{Entidad Empresa}
 \textbf{Especificaciones}
 
-Contiene información específica de la empresa, como su nombre y dirección, y su llave primaria es su nombre.
+Contiene información específica de la empresa, como su Razón Social, y su llave primaria es su RUC de empresa.
 
 \textbf{Consideraciones}
 
-Una empresa puede tener múltiples proveedores y empleados, por lo que se establece una relación entre las entidades Empresa, Proveedor y Persona.
+Una empresa puede tener múltiples empleados que son proveedores a nuestra tienda, por lo que se establece una relación entre las entidades Empresa, Proveedor. Su RUC es único por lo que se utiliza convenientemente como clave primaria.
 
 \subsubsection{Entidad Suministro}
 \textbf{Especificaciones}
 
-Contiene información específica del suministro, como su nombre y precio, y su llave primaria es su nombre.
+Contiene información específica del suministro realizado por un proveedor, como su fecha y el importe total. Su llave primaria es código numérico junto con el DNI del proveedor.
 
 \textbf{Consideraciones}
 
-Un suministro puede ser proporcionado por múltiples proveedores, por lo que se establece una relación entre las entidades Proveedor y Suministro.
+Suministro es una entidad débil de Proveedor, pues no existe sin este. Además, un suministro puede incluir múltiples vehículos, por lo que se establece una relación entre las entidades Suministro y Vehículo. El código numérico es asignado de manera ordenada y no se repite.
 
 \subsubsection{Entidad Compra}
 \textbf{Especificaciones}
 
-Contiene información específica de la compra, como su fecha y cantidad, y su llave primaria es un identificador único.
+Contiene información específica de la compra, como la fecha en la que se realizó y el VIN del vehículo comprado. Su llave primaria es un código numérico junto con el DNI del cliente.
+
 \textbf{Consideraciones}
 
-Una compra puede incluir múltiples suministros y ser realizada por múltiples empleados, por lo que se establece una relación entre las entidades Compra, Suministro y Persona.
+Compra es una relación débil de Cliente, pues no existe sin este. Una compra incluye solamente un vehículo, por lo que se establece la relación 1 a 1 entre Compra y Vehículo. Se obtiene como llave foránea al VIN del vehículo. El código numérico es asignado de manera ordenada y no se repite.
 
 \subsubsection{Entidad Vehículo}
 \textbf{Especificaciones}
 
-Contiene información específica de cada vehículo que se ha tenido en stock, como su marca y modelo, y su llave primaria es su número de identificación.
+Contiene información específica de cada vehículo que ha pasado por stock. Se almacena su marca, modelo, tipo de transmisión, color, precio, kilometraje y si se encuentra en stock. Recibe como llaves foráneas al código de su motor y el id del modelo. Su llave primaria es su código VIN.
 
 \textbf{Consideraciones}
 
+Se utiliza el código VIN pues es un número único asignado a cada vehículo al ser fabricado. Un vehículo que pertenece a la tabla solo puede ser comprado si se encuentra en stock, por lo que se establece una relación entre las entidades Vehículo y Compra. El vehículo es añadido a la tabla a través de un suministro, por lo que se establece la relación entre Vehículo y Suministro. Los vehículos son inspeccionados antes de ser agregados por uno o más mecánicos, por lo que se establece la relación entre Mecánico y Vehículo.
 
 
 \subsubsection{Entidad Modelo}
 \textbf{Especificaciones}
 
+Contiene información específica de cada modelo de vehículo. Se almacena su marca, nombre, año y precio sugerido. Recibe como llave foránea al id de su marca. Su llave primaria es su id numérico asignado por la tienda.
+
 \textbf{Consideraciones}
 
+Se utiliza un id numérico pues es más fácil de manejar que el nombre del modelo. Un modelo puede tener múltiples vehículos, por lo que se establece una relación entre las entidades Modelo y Vehículo.
 
 \subsubsection{Entidad ServicioPostVenta}
 \textbf{Especificaciones}
 
+Contiene información específica de cada servicio de postventa. Se almacena la fecha en la que se realizó, el tipo del servicio y el costo total. Su llave primaria está conformada por el DNI del cliente que pide el servicio y el código del orden en el que se realiza.
+
 \textbf{Consideraciones}
 
+Servicio de PostVenta es una entidad débil de Cliente, pues si el cliente no accede a este no existe. Se utiliza el código de orden pues es un número único asignado a cada servicio de postventa. Un servicio de postventa puede ser realizado por uno o más mecánicos, por lo que se establece una relación entre las entidades ServicioPostVenta y Mecánico.
 
 \section{Modelo Relacional}
 
@@ -281,11 +300,11 @@ Contiene información específica de cada vehículo que se ha tenido en stock, c
 \item Empresa(\textbf{\underline{RUC: VARCHAR(8)}}, RazonSocial: VARCHAR(100))
 \item Compra(\textbf{\underline{Cliente.DNI: VARCHAR(8)}, \underline{Código: INT}}, Vehículo.VIN:, Asesor.DNI, Fecha: DATE)
 \item Suministro(\textbf{\underline{Proveedor.DNI: VARCHAR(8)}, \underline{Código: INT}}, Fecha: DATE, Importe: FLOAT)
-\item Vehículo(\textbf{\underline{VIN: VARCHAR(17)}}, Color: VARCHAR(20), Precio: FLOAT, Kilometraje: INT, Transmisión: VARCHAR(10), Motor.Código: VARCHAR(20), Modelo.ID: INT, Modelo.Categoria: VARCHAR(20))
+\item Vehículo(\textbf{\underline{VIN: VARCHAR(17)}}, Color: VARCHAR(20), Precio: FLOAT, Kilometraje: INT, Transmisión: VARCHAR(10), EnStock: BOOLEAN, Motor.Código: VARCHAR(20), Modelo.ID: INT, Modelo.Categoria: VARCHAR(20))
 \item Motor(\textbf{\underline{Código: VARCHAR(20)}}, Marca: VARCHAR(20), Combustible: VARCHAR(20), Cilindros: INT, Cilindrada: INT, Potencia: INT)
 \item Modelo(\textbf{\underline{ID: INT}}, Marca: VARCHAR(20), Nombre: VARCHAR(20), Año: INT, PrecioSugerido: FLOAT)
 \item ServicioPostventa(\textbf{\underline{Cliente.DNI: VARCHAR(8)}, \underline{Orden: INT}}, Fecha: DATE, Tipo : VARCHAR(15), Costo: FLOAT)
-\item m\_inspecciona(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{Vehiculo.VIN: VARCHAR(17)}}, Fecha: DATE )
+\item m\_inspecciona(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{Vehiculo.VIN: VARCHAR(17)}}, Fecha: DATE)
 \item m\_realiza(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{ServicioPostventa.Orden: INT}}, \underline{Cliente.DNI: VARCHAR(8)})
 \end{enumerate}
 
@@ -299,9 +318,9 @@ Contiene información específica de cada vehículo que se ha tenido en stock, c
 \hline
 Tabla & Asesor \\
 \hline
-Clave Primaria & \textbf{\underline{DNI}} \\
+Clave Primaria & DNI \\
 \hline
-Clave Foránea & RUC \\
+Clave Foránea & N/A \\
 \hline
 \end{tabular}        
 \caption{Tabla Asesor}
@@ -316,9 +335,9 @@ Clave Foránea & RUC \\
 \hline
 Tabla & Mecánico \\
 \hline
-Clave Primaria & \textbf{\underline{DNI}} \\
+Clave Primaria & DNI \\
 \hline
-Clave Foránea & RUC \\
+Clave Foránea & N/A \\
 \hline
 \end{tabular}
 \caption{Tabla Mecánico}
@@ -331,9 +350,26 @@ Clave Foránea & RUC \\
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
+Tabla & Cliente \\
+\hline
+Clave Primaria & DNI \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}        
+\caption{Tabla Cliente}
+\label{tab:tablas}
+\end{center}
+\end{table}
+
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
 Tabla & Proveedor \\
 \hline
-Clave Primaria & \textbf{\underline{DNI}} \\
+Clave Primaria & DNI \\
 \hline
 Clave Foránea & Empresa.RUC \\
 \hline
@@ -350,7 +386,7 @@ Clave Foránea & Empresa.RUC \\
 \hline
 Tabla & Empresa \\
 \hline
-Clave Primaria & \textbf{\underline{RUC}} \\
+Clave Primaria & RUC \\
 \hline
 Clave Foránea & N/A \\
 \hline
@@ -367,9 +403,9 @@ Clave Foránea & N/A \\
 \hline
 Tabla & Vehículo \\
 \hline
-Clave Primaria & \textbf{\underline{VIN}} \\
+Clave Primaria & VIN \\
 \hline
-Clave Foránea & Motor.Código, Modelo.ID, Cliente.DNI \\
+Clave Foránea & Motor.Código, Modelo.ID \\
 \hline
 \end{tabular}
 \caption{Tabla Vehículo}
@@ -384,7 +420,7 @@ Clave Foránea & Motor.Código, Modelo.ID, Cliente.DNI \\
 \hline
 Tabla & Motor \\
 \hline
-Clave Primaria & \textbf{\underline{Código}} \\
+Clave Primaria & Código \\
 \hline
 Clave Foránea & N/A \\
 \hline
@@ -401,7 +437,7 @@ Clave Foránea & N/A \\
 \hline
 Tabla & Modelo \\
 \hline
-Clave Primaria & \textbf{\underline{ID}} \\
+Clave Primaria & ID \\
 \hline
 Clave Foránea & N/A \\
 \hline
@@ -420,9 +456,13 @@ Clave Foránea & N/A \\
 \hline
 Tabla & Compra \\
 \hline
-Clave Primaria & \textbf{\underline{Cliente.DNI}}, \textbf{\underline{Código}} \\
+Entidad Débil & Compra \\
 \hline
-Clave Foránea & Asesor.DNI, Vehículo.VIN \\
+Entidad Fuerte & Cliente \\
+\hline
+Clave Primaria & Cliente.DNI, Código \\
+\hline
+Clave Foránea & Cliente.DNI, Asesor.DNI, Vehículo.VIN \\
 \hline
 \end{tabular}
 \caption{Tabla Compra}
@@ -437,9 +477,13 @@ Clave Foránea & Asesor.DNI, Vehículo.VIN \\
 \hline
 Tabla & Suministro \\
 \hline
-Clave Primaria & \textbf{\underline{Proveedor.DNI}}, \textbf{\underline{Código}}, \textbf{\underline{Fecha}} \\
+Entidad Débil & Suministro \\
 \hline
-Clave Foránea & N/A \\
+Entidad Fuerte & Cliente \\
+\hline
+Clave Primaria & Proveedor.DNI, Código \\
+\hline
+Clave Foránea & Proveedor.DNI \\
 \hline
 \end{tabular}
 \caption{Tabla Suministro}
@@ -452,11 +496,15 @@ Clave Foránea & N/A \\
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
-Tabla & ServicioPostventa \\
+Tabla & ServicioPostVenta \\
 \hline
-Clave Primaria & \textbf{\underline{Cliente.DNI}}, \textbf{\underline{Orden}}, \textbf{\underline{Fecha}} \\
+Entidad Débil & ServicioPostVenta \\
 \hline
-Clave Foránea & N/A \\
+Entidad Fuerte & Cliente \\
+\hline
+Clave Primaria & Cliente.DNI, Orden \\
+\hline
+Clave Foránea & Cliente.DNI \\
 \hline
 \end{tabular}
 \caption{Tabla ServicioPostventa}
@@ -478,7 +526,7 @@ Clave Foránea & N/A \\
 \hline
 Tabla & m\_inspecciona \\
 \hline
-Clave Primaria & \textbf{\underline{Mecánico.DNI}}, \textbf{\underline{Vehículo.VIN}} \\
+Clave Primaria & Mecánico.DNI, Vehículo.VIN \\
 \hline
 Clave Foránea & N/A \\
 \hline
@@ -494,9 +542,9 @@ Clave Foránea & N/A \\
 \hline
 Tabla & m\_realiza \\
 \hline
-Clave Primaria & \textbf{\underline{Mecánico.DNI}}, \textbf{\underline{ServicioPostVenta.Orden}} \\
+Clave Primaria & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
 \hline
-Clave Foránea & N/A \\
+Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
 \hline
 \end{tabular}
 \caption{Tabla m\_inspecciona}
@@ -506,10 +554,9 @@ Clave Foránea & N/A \\
 
 \subsection{Diccionario de datos}
 
-Asesor
 \begin{table}[htbp]
     \begin{center}
-    \begin{tabular}{|l|l|l|l|l|}
+    \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
         \hline
         Nombre Campo & Tipo de dato & PK & FK & Descripción \\
         \hline
@@ -525,10 +572,10 @@ Asesor
     \end{center}
 \end{table}
 
-Mecanico
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
@@ -544,10 +591,10 @@ Mecanico
     \end{center}
 \end{table}
 
-Cliente
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
@@ -561,10 +608,10 @@ Cliente
     \end{center}
 \end{table}
 
-Proveedor
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
@@ -579,10 +626,10 @@ Proveedor
     \end{center}
 \end{table}
 
-Empresa
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
@@ -595,15 +642,15 @@ Empresa
     \end{center}
 \end{table}
 
-Compra
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
             Cliente.DNI & VARCHAR(8) & X & X & Documento de identificación del cliente\\
-            Código & INT &  &  & Código de la compra \\
+            Código & INT & X &  & Código de la compra \\
             Vehículo.VIN & VARCHAR(17) &  & X & Número de identificación del vehículo comprado \\
             Asesor.DNI & VARCHAR(8) &  & X & Número de identificación del asesor encargado de la venta \\
             Fecha & DATE &  &  & Fecha de la compra \\
@@ -614,15 +661,15 @@ Compra
     \end{center}
 \end{table}
 
-Suministro
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
-            Proveedor.DNI & VARCHAR(8) &  & X & Número de identificación del proveedor \\
-            Código & INT &  &  & Código del suministro \\
+            Proveedor.DNI & VARCHAR(8) & X & X & Número de identificación del proveedor \\
+            Código & INT & X &  & Código del suministro \\
             Fecha & DATE &  &  & Fecha del suministro \\
             Importe & FLOAT &  &  & Importe del suministro \\
             \hline
@@ -632,10 +679,10 @@ Suministro
     \end{center}
 \end{table}
 
-Vehiculo 
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
@@ -646,7 +693,7 @@ Vehiculo
             Transmisión & VARCHAR(10) &  &  & Tipo de transmisión del vehículo \\
             Motor.Código & VARCHAR(20) &  & X & Código del motor del vehículo \\
             Modelo.ID & INT &  & X & ID del modelo del vehículo \\
-            Modelo.Categoria & VARCHAR(20) &  &  & Categoría del modelo del vehículo \\
+            Modelo.Categoria & VARCHAR(20) &  & X & Categoría del modelo del vehículo \\
             \hline
             \end{tabular}
         \caption{Tabla Vehiculo}
@@ -654,10 +701,10 @@ Vehiculo
     \end{center}
 \end{table}
 
-Motor
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
@@ -674,10 +721,10 @@ Motor
     \end{center}
 \end{table}
 
-Modelo 
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
@@ -693,14 +740,14 @@ Modelo
     \end{center}
 \end{table}
 
-ServicioPostventa
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
-            Cliente.DNI & VARCHAR(8) &  & X & Número de identificación del cliente \\
+            Cliente.DNI & VARCHAR(8) & X & X & Número de identificación del cliente \\
             Orden & INT & X &  & Número de orden del servicio postventa \\
             Fecha & DATE &  &  & Fecha del servicio postventa \\
             Tipo & VARCHAR(15) &  &  & Tipo de servicio postventa \\
@@ -712,15 +759,15 @@ ServicioPostventa
     \end{center}
 \end{table}
 
-m\_inspecciona
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
-            Mecanico.DNI & VARCHAR(8) &  & X & Número de identificación del mecánico \\
-            Vehiculo.VIN & VARCHAR(17) &  & X & Número de identificación del vehículo inspeccionado \\
+            Mecanico.DNI & VARCHAR(8) & X & X & Número de identificación del mecánico \\
+            Vehiculo.VIN & VARCHAR(17) & X & X & Número de identificación del vehículo inspeccionado \\
             Fecha & DATE &  &  & Fecha de la inspección \\
             \hline
         \end{tabular}
@@ -729,15 +776,15 @@ m\_inspecciona
     \end{center}
 \end{table}
 
-m\_realiza
+
 \begin{table}[htbp]
     \begin{center}
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabular}{|p{5cm}|p{3cm}|p{1cm}|p{1cm}|p{4cm}|}
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
-            Mecanico.DNI & VARCHAR(8) &  & X & Número de identificación del mecánico \\
-            ServicioPostventa.Orden & INT &  & X & Número de orden del servicio postventa realizado por el mecánico \\
+            Mecanico.DNI & VARCHAR(8) & X & X & Número de identificación del mecánico \\
+            ServicioPostventa.Orden & INT & X & X & Número de orden del servicio postventa realizado por el mecánico \\
             \hline
             \end{tabular}
         \caption{Tabla m\_realiza}
