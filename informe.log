@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.5.6)  7 MAY 2023 23:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.5.6)  7 MAY 2023 23:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -361,26 +361,26 @@ Package hyperref Info: Link coloring OFF on input line 12.
 <autoland.jpeg, id=168, 200.75pt x 200.75pt>
 File: autoland.jpeg Graphic file (type jpg)
 <use autoland.jpeg>
-Package pdftex.def Info: autoland.jpeg  used on input line 27.
+Package pdftex.def Info: autoland.jpeg  used on input line 24.
 (pdftex.def)             Requested size: 195.0pt x 195.01213pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./informe.toc [2 <./autoland.jpeg>])
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./autoland.jpeg>] (./informe.toc [2])
 \tf@toc=\write4
 \openout4 = `informe.toc'.
 
  [3]
-Overfull \hbox (40.64621pt too wide) in paragraph at lines 52--52
+Overfull \hbox (40.64621pt too wide) in paragraph at lines 53--53
 []\OT1/cmr/bx/n/14.4 Descripci^^Son gen-eral del prob-le-ma/or-ga-ni-zaci^^Son/empresa 
  []
 
 [4] [5] [6]
-Underfull \hbox (badness 1609) in paragraph at lines 109--109
+Underfull \hbox (badness 1609) in paragraph at lines 110--110
 []\OT1/cmr/bx/n/12 Longitud del reg-
  []
 
 
-Overfull \hbox (110.58478pt too wide) in paragraph at lines 129--146
+Overfull \hbox (110.58478pt too wide) in paragraph at lines 130--147
  [][] 
  []
 
@@ -391,155 +391,155 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <ER.jpg, id=264, 1341.01pt x 990.70125pt>
 File: ER.jpg Graphic file (type jpg)
 <use ER.jpg>
-Package pdftex.def Info: ER.jpg  used on input line 250.
+Package pdftex.def Info: ER.jpg  used on input line 251.
 (pdftex.def)             Requested size: 390.0pt x 288.11232pt.
  [12 <./ER.jpg>] [13] [14] [15]
-Overfull \hbox (15.88316pt too wide) in paragraph at lines 366--367
+Overfull \hbox (15.88316pt too wide) in paragraph at lines 367--368
 []\OT1/cmr/m/n/12 Compra($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 , Veh^^S^^Pculo.VIN:,
  []
 
 
-Overfull \hbox (5.40433pt too wide) in paragraph at lines 367--368
+Overfull \hbox (5.40433pt too wide) in paragraph at lines 368--369
 []\OT1/cmr/m/n/12 Suministro($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 , Fecha:
  []
 
 
-Overfull \hbox (26.68182pt too wide) in paragraph at lines 368--369
+Overfull \hbox (26.68182pt too wide) in paragraph at lines 369--370
 []\OT1/cmr/m/n/12 Veh^^S^^Pculo($[]$, Color: VAR-CHAR(20), Pre-cio: FLOAT,
  []
 
 
-Overfull \hbox (5.92094pt too wide) in paragraph at lines 368--369
+Overfull \hbox (5.92094pt too wide) in paragraph at lines 369--370
 \OT1/cmr/m/n/12 Kilo-me-traje: INT, Trans-misi^^Son: VAR-CHAR(10), En-Stock: BOOLEAN,
  []
 
 
-Overfull \hbox (20.06258pt too wide) in paragraph at lines 369--370
+Overfull \hbox (20.06258pt too wide) in paragraph at lines 370--371
 []\OT1/cmr/m/n/12 Motor($[]$, Marca: VAR-CHAR(20), Com-bustible:
  []
 
 
-Overfull \hbox (18.05115pt too wide) in paragraph at lines 371--372
+Overfull \hbox (18.05115pt too wide) in paragraph at lines 372--373
 []\OT1/cmr/m/n/12 ServicioPostventa($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 , Fecha:
  []
 
 [16]
-Overfull \hbox (88.03871pt too wide) in paragraph at lines 372--373
+Overfull \hbox (88.03871pt too wide) in paragraph at lines 373--374
 []\OT1/cmr/m/n/12 m[]inspecciona($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 ,
  []
 
 
-Overfull \hbox (61.28476pt too wide) in paragraph at lines 373--374
+Overfull \hbox (61.28476pt too wide) in paragraph at lines 374--375
 []\OT1/cmr/m/n/12 m[]realiza($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 ,
  []
 
 [17] [18] [19]
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 579--590
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 580--591
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 602--603
+Underfull \hbox (badness 6675) in paragraph at lines 603--604
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 598--609
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 599--610
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 621--622
+Underfull \hbox (badness 6675) in paragraph at lines 622--623
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 617--626
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 618--627
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 638--639
+Underfull \hbox (badness 6675) in paragraph at lines 639--640
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 634--644
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 635--645
  [] 
  []
 
 
-Overfull \hbox (0.7867pt too wide) in paragraph at lines 657--657
+Overfull \hbox (0.7867pt too wide) in paragraph at lines 658--658
 []\OT1/cmr/m/n/12 VARCHAR(100)| 
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 652--660
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 653--661
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 674--675
+Underfull \hbox (badness 6675) in paragraph at lines 675--676
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 668--679
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 669--680
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 691--692
+Underfull \hbox (badness 6675) in paragraph at lines 692--693
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 687--697
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 688--698
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 709--710
+Underfull \hbox (badness 6675) in paragraph at lines 710--711
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (5.37274pt too wide) in paragraph at lines 716--716
+Overfull \hbox (5.37274pt too wide) in paragraph at lines 717--717
 []\OT1/cmr/m/n/12 Modelo.Categoria| 
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 705--719
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 706--720
  [] 
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 727--739
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 728--740
  [] 
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 747--758
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 748--759
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 770--771
+Underfull \hbox (badness 6675) in paragraph at lines 771--772
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Underfull \hbox (badness 1789) in paragraph at lines 771--772
+Underfull \hbox (badness 1789) in paragraph at lines 772--773
 []\OT1/cmr/m/n/12 N^^Sumero de or-den del ser-vi-cio
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 766--777
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 767--778
  [] 
  []
 
 
-Overfull \hbox (7.82118pt too wide) in paragraph at lines 785--797
+Overfull \hbox (7.82118pt too wide) in paragraph at lines 786--798
  [] 
  []
 
@@ -565,7 +565,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  75i,11n,76p,703b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on informe.pdf (24 pages, 245292 bytes).
+Output written on informe.pdf (24 pages, 245271 bytes).
 PDF statistics:
  402 PDF objects out of 1000 (max. 8388607)
  362 compressed objects within 4 object streams
