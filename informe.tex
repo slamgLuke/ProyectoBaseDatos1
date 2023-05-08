@@ -2,9 +2,6 @@
 
 \documentclass[12pt]{article}
 
-\title{Avance 1 - Proyecto Base de Datos I}
-\author{}
-
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{color}
@@ -14,7 +11,16 @@
 
 \begin{document}
 
+\title{Autoland Data Structure}
+
+\author{Lucas Carranza 202210073, David Herencia 202210408, Francisco Calle 202210065 }
+
+
+\date{2022}
+
 \maketitle
+
+\setstretch{1.5}
 
 \tableofcontents
 
@@ -93,7 +99,13 @@ Modelo        & 10                           & 10             \\ \hline
 
 \subsection{Objetivos del proyecto}
 
+\begin{itemize}
 
+\item El proyecto en cuestion tiene como proposito mejorar la data de Autoland usando conocimientos en bases de datos para lograr un mejor manejo de la información recibida por medio de procesos.
+
+\item Como segundo proposito buscamos mejorar el tiempo de respuesta al momento de solicitar información o ingresarla.
+
+\end{itemize}
 
 \subsection{Referencias del proyecto}
 
@@ -186,7 +198,7 @@ A continuación, el modelo entidad-relación que representa la base de datos:
 \caption{Modelo Entidad-Relación}
 \end{figure}
 
-\subsection{Especificaciones y conseideraciones sobre el modelo}
+\subsection{Especificaciones y consideraciones sobre el modelo}
 
 \subsubsection{Entidad Persona}
 \textbf{Especificaciones}
@@ -311,73 +323,6 @@ Servicio de PostVenta es una entidad débil de Cliente, pues si el cliente no ac
 \subsection{Especificaciones de transformaci\'on}
 
 \subsubsection{Entidades}
-
-\begin{table}[htbp]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-Tabla & Asesor \\
-\hline
-Clave Primaria & DNI \\
-\hline
-Clave Foránea & N/A \\
-\hline
-\end{tabular}        
-\caption{Tabla Asesor}
-\label{tab:tablas}
-\end{center}
-\end{table}
-
-
-\begin{table}[htbp]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-Tabla & Mecánico \\
-\hline
-Clave Primaria & DNI \\
-\hline
-Clave Foránea & N/A \\
-\hline
-\end{tabular}
-\caption{Tabla Mecánico}
-\label{tab:tablas}
-\end{center}
-\end{table}
-
-
-\begin{table}[htbp]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-Tabla & Cliente \\
-\hline
-Clave Primaria & DNI \\
-\hline
-Clave Foránea & N/A \\
-\hline
-\end{tabular}        
-\caption{Tabla Cliente}
-\label{tab:tablas}
-\end{center}
-\end{table}
-
-
-\begin{table}[htbp]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-Tabla & Proveedor \\
-\hline
-Clave Primaria & DNI \\
-\hline
-Clave Foránea & Empresa.RUC \\
-\hline
-\end{tabular}
-\caption{Tabla Proveedor}
-\label{tab:tablas}
-\end{center}
-\end{table}
 
 
 \begin{table}[htbp]
@@ -516,6 +461,24 @@ Clave Foránea & Cliente.DNI \\
 
 \subsubsection{Entidades superclase/subclase}
 
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Persona \\
+\hline
+Entidad Superclase & Persona \\
+\hline
+Entidad Subclase & Cliente, Mecánico, Asesor, Proveedor \\
+Clave Primaria & DNI \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}        
+\caption{Tabla Persona}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
 \subsubsection{Relaciones binarias}

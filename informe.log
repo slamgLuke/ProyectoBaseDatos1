@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.5.6)  7 MAY 2023 23:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.5.6)  7 MAY 2023 23:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -312,36 +312,27 @@ LaTeX Warning: Label `tab:tablas' multiply defined.
 
 LaTeX Warning: Label `tab:tablas' multiply defined.
 
-
-LaTeX Warning: Label `tab:tablas' multiply defined.
-
-
-LaTeX Warning: Label `tab:tablas' multiply defined.
-
-
-LaTeX Warning: Label `tab:tablas' multiply defined.
-
 )
 \openout1 = `informe.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count291
@@ -362,19 +353,33 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count297
-Package hyperref Info: Link coloring OFF on input line 15.
+Package hyperref Info: Link coloring OFF on input line 12.
  (./informe.out) (./informe.out)
 \@outlinefile=\write3
 \openout3 = `informe.out'.
 
- (./informe.toc [1
+
+Overfull \hbox (128.75865pt too wide) in paragraph at lines 22--22
+ [][] 
+ []
+
+./informe.tex:23: Undefined control sequence.
+l.23 \setstretch
+                {1.5}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+(./informe.toc [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write4
 \openout4 = `informe.toc'.
 
  [2]
-Overfull \hbox (40.64621pt too wide) in paragraph at lines 29--29
+Overfull \hbox (40.64621pt too wide) in paragraph at lines 35--35
 []\OT1/cmr/bx/n/14.4 Descripci^^Son gen-eral del prob-le-ma/or-ga-ni-zaci^^Son/empresa 
  []
 
@@ -382,208 +387,208 @@ Overfull \hbox (40.64621pt too wide) in paragraph at lines 29--29
 <ER.jpg, id=249, 1341.01pt x 989.6975pt>
 File: ER.jpg Graphic file (type jpg)
 <use ER.jpg>
-Package pdftex.def Info: ER.jpg  used on input line 185.
+Package pdftex.def Info: ER.jpg  used on input line 197.
 (pdftex.def)             Requested size: 312.00119pt x 230.2533pt.
  [9] [10 <./ER.jpg>] [11] [12] [13]
-Overfull \hbox (15.88316pt too wide) in paragraph at lines 301--302
+Overfull \hbox (15.88316pt too wide) in paragraph at lines 313--314
 []\OT1/cmr/m/n/12 Compra($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 , Veh^^S^^Pculo.VIN:,
  []
 
 
-Overfull \hbox (5.40433pt too wide) in paragraph at lines 302--303
+Overfull \hbox (5.40433pt too wide) in paragraph at lines 314--315
 []\OT1/cmr/m/n/12 Suministro($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 , Fecha:
  []
 
 
-Overfull \hbox (26.68182pt too wide) in paragraph at lines 303--304
+Overfull \hbox (26.68182pt too wide) in paragraph at lines 315--316
 []\OT1/cmr/m/n/12 Veh^^S^^Pculo($[]$, Color: VAR-CHAR(20), Pre-cio: FLOAT,
  []
 
 
-Overfull \hbox (5.92094pt too wide) in paragraph at lines 303--304
+Overfull \hbox (5.92094pt too wide) in paragraph at lines 315--316
 \OT1/cmr/m/n/12 Kilo-me-traje: INT, Trans-misi^^Son: VAR-CHAR(10), En-Stock: BOOLEAN,
  []
 
 
-Overfull \hbox (20.06258pt too wide) in paragraph at lines 304--305
+Overfull \hbox (20.06258pt too wide) in paragraph at lines 316--317
 []\OT1/cmr/m/n/12 Motor($[]$, Marca: VAR-CHAR(20), Com-bustible:
  []
 
 
-Overfull \hbox (18.05115pt too wide) in paragraph at lines 306--307
+Overfull \hbox (18.05115pt too wide) in paragraph at lines 318--319
 []\OT1/cmr/m/n/12 ServicioPostventa($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 , Fecha:
  []
 
 
-Overfull \hbox (88.03871pt too wide) in paragraph at lines 307--308
+Overfull \hbox (88.03871pt too wide) in paragraph at lines 319--320
 []\OT1/cmr/m/n/12 m[]inspecciona($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 ,
  []
 
 
-Overfull \hbox (61.28476pt too wide) in paragraph at lines 308--309
+Overfull \hbox (61.28476pt too wide) in paragraph at lines 320--321
 []\OT1/cmr/m/n/12 m[]realiza($[]$\OT1/cmr/bx/n/12 , $[]$\OT1/cmr/m/n/12 ,
  []
 
 [14]
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 559--570
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 522--533
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 582--583
+Underfull \hbox (badness 6675) in paragraph at lines 545--546
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 578--589
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 541--552
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 601--602
+Underfull \hbox (badness 6675) in paragraph at lines 564--565
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 597--606
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 560--569
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 618--619
+Underfull \hbox (badness 6675) in paragraph at lines 581--582
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 614--624
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 577--587
  [] 
  []
 
 
-Overfull \hbox (0.7867pt too wide) in paragraph at lines 637--637
+Overfull \hbox (0.7867pt too wide) in paragraph at lines 600--600
 []\OT1/cmr/m/n/12 VARCHAR(100)| 
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 632--640
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 595--603
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 654--655
+Underfull \hbox (badness 6675) in paragraph at lines 617--618
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 648--659
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 611--622
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 671--672
+Underfull \hbox (badness 6675) in paragraph at lines 634--635
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 667--677
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 630--640
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 689--690
+Underfull \hbox (badness 6675) in paragraph at lines 652--653
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (5.37274pt too wide) in paragraph at lines 696--696
+Overfull \hbox (5.37274pt too wide) in paragraph at lines 659--659
 []\OT1/cmr/m/n/12 Modelo.Categoria| 
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 685--699
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 648--662
  [] 
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 707--719
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 670--682
  [] 
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 727--738
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 690--701
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 750--751
+Underfull \hbox (badness 6675) in paragraph at lines 713--714
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Underfull \hbox (badness 1789) in paragraph at lines 751--752
+Underfull \hbox (badness 1789) in paragraph at lines 714--715
 []\OT1/cmr/m/n/12 N^^Sumero de or-den del ser-vi-cio
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 746--757
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 709--720
  [] 
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 769--770
+Underfull \hbox (badness 6675) in paragraph at lines 732--733
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 770--771
+Underfull \hbox (badness 6675) in paragraph at lines 733--734
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-caci^^Son del
  []
 
 
-Overfull \hbox (68.33853pt too wide) in paragraph at lines 765--774
+Overfull \hbox (68.33853pt too wide) in paragraph at lines 728--737
  [] 
  []
 
 
-Underfull \hbox (badness 4505) in paragraph at lines 786--787
+Underfull \hbox (badness 4505) in paragraph at lines 749--750
 []\OT1/cmr/m/n/12 N^^Sumero de iden-ti-fi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 787--788
+Underfull \hbox (badness 10000) in paragraph at lines 750--751
 \OT1/cmr/m/n/12 ser-vi-cio postventa
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 787--788
+Underfull \hbox (badness 10000) in paragraph at lines 750--751
 \OT1/cmr/m/n/12 re-al-izado por el
  []
 
 
-Overfull \hbox (68.33855pt too wide) in paragraph at lines 782--790
+Overfull \hbox (68.33855pt too wide) in paragraph at lines 745--753
  [] 
  []
 
-[15] [16] [17] [18] [19] [20] [21] [22] (./informe.aux)
+[15] [16] [17] [18] [19] [20] [21] (./informe.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `informe.out' has not changed.
-(rerunfilecheck)             Checksum: D4D23BE02182DE812432D226E3D31AA7;7879.
+(rerunfilecheck)             Checksum: ED92891A2251BB7CC15E8776AF0960AF;7874.
  ) 
 Here is how much of TeX's memory you used:
- 10422 strings out of 476025
- 160657 string characters out of 5796533
- 1916388 words of memory out of 5000000
+ 10418 strings out of 476025
+ 160626 string characters out of 5796533
+ 1914388 words of memory out of 5000000
  30657 multiletter control sequences out of 15000+600000
  518917 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,76p,703b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on informe.pdf (22 pages, 234069 bytes).
+Output written on informe.pdf (21 pages, 232463 bytes).
 PDF statistics:
- 394 PDF objects out of 1000 (max. 8388607)
- 357 compressed objects within 4 object streams
- 105 named destinations out of 1000 (max. 500000)
+ 386 PDF objects out of 1000 (max. 8388607)
+ 350 compressed objects within 4 object streams
+ 101 named destinations out of 1000 (max. 500000)
  334 words of extra memory for PDF output out of 10000 (max. 10000000)
 

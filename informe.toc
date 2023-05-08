@@ -16,10 +16,10 @@
 \contentsline {subsection}{\numberline {1.8}Eventualidades}{6}{subsection.1.8}%
 \contentsline {subsubsection}{\numberline {1.8.1}Problemas que pudieran encontrarse en el proyecto}{6}{subsubsection.1.8.1}%
 \contentsline {subsubsection}{\numberline {1.8.2}Limites y alcances del proyecto}{7}{subsubsection.1.8.2}%
-\contentsline {section}{\numberline {2}Modelo Entidad-Relaci\'on}{7}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Reglas sem\'anticas}{7}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Modelo Entidad-Relaci\'on}{9}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Especificaciones y conseideraciones sobre el modelo}{10}{subsection.2.3}%
+\contentsline {section}{\numberline {2}Modelo Entidad-Relaci\'on}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Reglas sem\'anticas}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Modelo Entidad-Relaci\'on}{10}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Especificaciones y consideraciones sobre el modelo}{10}{subsection.2.3}%
 \contentsline {subsubsection}{\numberline {2.3.1}Entidad Persona}{10}{subsubsection.2.3.1}%
 \contentsline {subsubsection}{\numberline {2.3.2}Entidad Cliente}{10}{subsubsection.2.3.2}%
 \contentsline {subsubsection}{\numberline {2.3.3}Entidad Asesor}{11}{subsubsection.2.3.3}%
