@@ -174,50 +174,77 @@ A continuación, el modelo entidad-relación que representa la base de datos:
 
 \subsection{Especificaciones y conseideraciones sobre el modelo}
 
-\subsubsection{Entidadad Persona}
+\subsubsection{Entidad Persona}
 \textbf{Especificaciones}
 
+Clase padre de Cliente, Asesor, Mecánico y Proveedor. Contiene la información necesaria para identificarlos como sus Nombres y Apellidos, y su llave primaria es el DNI.
 \textbf{Consideraciones}
 
-\subsubsection{Entidadad Cliente}
+Se usa el DNI como llave primaria por la posibilidad de homonimia y la facilidad que este provee como identificador único.
+
+\subsubsection{Entidad Cliente}
 \textbf{Especificaciones}
 
+Contiene información específica del cliente, como su dirección, correo electrónico y teléfono, y su llave primaria es el DNI.
 \textbf{Consideraciones}
 
-\subsubsection{Entidadad Asesor}
+Un cliente puede tener múltiples vehículos, por lo que se establece una relación entre las entidades Cliente y Vehículo.
+
+\subsubsection{Entidad Asesor}
 \textbf{Especificaciones}
 
+Contiene información específica del asesor, como su número de empleado y fecha de contratación, y su llave primaria es el DNI.
 \textbf{Consideraciones}
+
+Un asesor puede atender a múltiples clientes y vehículos, por lo que se establece una relación entre las entidades Asesor, Cliente y Vehículo.
 
 \subsubsection{Entidad Mecánico}
 \textbf{Especificaciones}
 
+Contiene información específica del mecánico, como su número de empleado y especialidad, y su llave primaria es el DNI.
 \textbf{Consideraciones}
 
-\subsubsection{Entidadad Proveedor}
+Un mecánico puede trabajar en múltiples servicios y vehículos, por lo que se establece una relación entre las entidades Mecánico, ServicioPostVenta y Vehículo.
+
+\subsubsection{Entidad Proveedor}
 \textbf{Especificaciones}
 
+Contiene información específica del proveedor, como su dirección y número de contacto, y su llave primaria es su nombre.
 \textbf{Consideraciones}
+
+Un proveedor puede proveer múltiples suministros, por lo que se establece una relación entre las entidades Proveedor y Suministro.
 
 \subsubsection{Entidad Empresa}
 \textbf{Especificaciones}
 
+Contiene información específica de la empresa, como su nombre y dirección, y su llave primaria es su nombre.
 \textbf{Consideraciones}
+
+Una empresa puede tener múltiples proveedores y empleados, por lo que se establece una relación entre las entidades Empresa, Proveedor y Persona.
 
 \subsubsection{Entidad Suministro}
 \textbf{Especificaciones}
 
+Contiene información específica del suministro, como su nombre y precio, y su llave primaria es su nombre.
 \textbf{Consideraciones}
+
+Un suministro puede ser proporcionado por múltiples proveedores, por lo que se establece una relación entre las entidades Proveedor y Suministro.
 
 \subsubsection{Entidad Compra}
 \textbf{Especificaciones}
 
+Contiene información específica de la compra, como su fecha y cantidad, y su llave primaria es un identificador único.
 \textbf{Consideraciones}
+
+Una compra puede incluir múltiples suministros y ser realizada por múltiples empleados, por lo que se establece una relación entre las entidades Compra, Suministro y Persona.
 
 \subsubsection{Entidad Vehículo}
 \textbf{Especificaciones}
 
+Contiene información específica de cada vehículo que se ha tenido en stock, como su marca y modelo, y su llave primaria es su número de identificación.
 \textbf{Consideraciones}
+
+
 
 \subsubsection{Entidad Modelo}
 \textbf{Especificaciones}
@@ -238,6 +265,7 @@ A continuación, el modelo entidad-relación que representa la base de datos:
 
 \subsubsection{Entidades}
 
+
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Asesor \\
@@ -247,6 +275,7 @@ Clave Primaria & \textbf{\underline{DNI}} \\
 Clave Foránea & RUC \\
 \hline
 \end{tabular}
+
 
 \begin{tabular}{|c|c|}
 \hline
@@ -258,6 +287,7 @@ Clave Foránea & RUC \\
 \hline
 \end{tabular}
 
+
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Proveedor \\
@@ -267,6 +297,7 @@ Clave Primaria & \textbf{\underline{DNI}} \\
 Clave Foránea & Empresa.RUC \\
 \hline
 \end{tabular}
+
 
 \begin{tabular}{|c|c|}
 \hline
@@ -290,6 +321,7 @@ Clave Foránea & Motor.Código, Modelo.ID, Cliente.DNI \\
 \hline
 \end{tabular}
 
+
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Motor \\
@@ -299,6 +331,7 @@ Clave Primaria & \textbf{\underline{Código}} \\
 Clave Foránea & N/A \\
 \hline
 \end{tabular}
+
 
 \begin{tabular}{|c|c|}
 \hline
@@ -313,6 +346,7 @@ Clave Foránea & N/A \\
 
 \subsubsection{Entidades d\'ebiles}
 
+
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Compra \\
@@ -323,6 +357,7 @@ Clave Foránea & Asesor.DNI, Vehículo.VIN \\
 \hline
 \end{tabular}
 
+
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Suministro \\
@@ -332,6 +367,7 @@ Clave Primaria & \textbf{\underline{Proveedor.DNI}}, \textbf{\underline{Código}
 Clave Foránea & N/A \\
 \hline
 \end{tabular}
+
 
 \begin{tabular}{|c|c|}
 \hline
@@ -349,42 +385,37 @@ Clave Foránea & N/A \\
 
 
 \subsubsection{Relaciones binarias}
+
+\begin{tabular}{|c|c|}
+\hline
+Tabla & m\_inspecciona \\
+\hline
+Clave Primaria & \textbf{\underline{Mecánico.DNI}}, \textbf{\underline{Vehículo.VIN}} \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}
+
 \subsubsection{Relaciones ternarias}
 
 \subsection{Diccionario de datos}
 
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-Nombre Campo & Tipo de dato & PK & FK & Descripción \\
-\hline
-DNI & VARCHAR(8) & X &  & Número de identificación del asesor \\
-Nombres & VARCHAR(50) &  &  & Nombres del asesor \\
-Apellidos & VARCHAR(50) &  &  & Apellidos del asesor \\
-RUC & VARCHAR(11) &  &  & Registro Único del Contribuyente del asesor \\
-Salario & FLOAT &  &  & Salario del asesor \\
-\hline
-\end{tabular}
-
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-Nombre Campo & Tipo de dato & PK & FK & Descripción \\
-\hline
-DNI & VARCHAR(8) & X &  & Número de identificación del mecánico \\
-Nombres & VARCHAR(50) &  &  & Nombres del mecánico \\
-Apellidos & VARCHAR(50) &  &  & Apellidos del mecánico \\
-RUC & VARCHAR(11) &  &  & Registro Único del Contribuyente del mecánico \\
-Salario & FLOAT &  &  & Salario del mecánico \\
-\hline
-\end{tabular}
-
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-Nombre Campo & Tipo de dato & PK & FK & Descripción \\
-\hline
-DNI & VARCHAR(8) & X &  & Número de identificación del cliente \\
-Nombres & VARCHAR(50) &  &  & Nombres del cliente \\
-Apellidos & VARCHAR(50) &  &  & Apellidos del cliente \\
-\hline
-\end{tabular}
+\begin{table}[htbp]
+    \begin{center}
+    \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+        \hline
+        DNI & VARCHAR(8) & X &  & Número de identificación del asesor \\
+        Nombres & VARCHAR(50) &  &  & Nombres del asesor \\
+        Apellidos & VARCHAR(50) &  &  & Apellidos del asesor \\
+        RUC & VARCHAR(11) &  &  & Registro Único del Contribuyente del asesor \\
+        Salario & FLOAT &  &  & Salario del asesor \\
+        \hline
+        \end{tabular}
+        \caption{Tabla Asesor}
+        \label{tab:tablas}
+    \end{center}
+\end{table}
 
 \end{document}
