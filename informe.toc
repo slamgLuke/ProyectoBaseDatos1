@@ -35,7 +35,7 @@
 \contentsline {subsection}{\numberline {3.1}Modelo Relacional}{16}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Especificaciones de transformaci\'on}{18}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Entidades}{18}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Entidades d\'ebiles}{18}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Entidades superclase/subclase}{18}{subsubsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.4}Relaciones binarias}{18}{subsubsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.3}Diccionario de datos}{20}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.2.2}Entidades d\'ebiles}{19}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Entidades superclase/subclase}{20}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Relaciones binarias}{21}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Diccionario de datos}{22}{subsection.3.3}%
