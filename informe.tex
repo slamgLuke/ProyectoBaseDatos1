@@ -140,26 +140,29 @@ A continuación, las reglas semánticas que definen el fucionamiento de la base 
 
 \begin{itemize}
 \item La tienda contrata asesores de ventas que se encargan de supervisar la venta de vehículos. Cuentan con DNI, RUC, Nombres, Apellidos y Salario.
-\item La tienda contrata mecánicos que se encargan de inspeccionar los vehículos antes de su venta, así como realizar servicios de mantenimiento y reparación a los clientes. Cuentan con DNI, RUC, Nombres, Apellidos y Salario.
+\item La tienda contrata mecánicos. Cuentan con DNI, RUC, Nombres, Apellidos y Salario. Estos pueden encargarse de realizar inspecciones a vehículos antes de su adquisición por parte de la tienda, o servicios de postventa a los clientes.
 \item Los clientes se identifican con su DNI, Nombres y Apellidos. Para ser considerado cliente, debe haber realizado por lo menos una compra.
 \item Los proveedores son los agentes que nos suministran de vehículos. Se identifican con su DNI. Cuentan con nombres, apellidos, y el RUC de la empresa en la que trabaja. Cada proveedor trabaja para una sola empresa, que se identifica con su razón social y RUC.
 \item Los clientes pueden realizar múltiples compras (las compras dependen del cliente).
 \item La compra de un vehículo debe ser atendida solo por un asesor de ventas, y se registra con un código numérico único, fecha, DNI del cliente, DNI del asesor y VIN del vehículo.
 \item Cada compra corresponde a la adquisición de un solo vehículo.
+\item Un cliente tiene la posibilidad de acceder a cero o más servicios de postventa. Este servicio sólo existe gracias al cliente.
+\item El servicio de postventa es realizado por uno o más mecánicos. Se identifica con el número de orden en el que se realizó. Además, se registra la fecha en la que se realizó, el tipo de servicio (reparación, mantenimiento, pintura) y el costo.
 \item Los proveedores realizan suministros. Para ser registrado como proveedor debe haber realizado mínimo un suministro a la tienda.
 \item Cada suministro corresponde a un solo proveedor. Igualmente no existe sin éste.
 \item Cada suministro añade uno o más vehículos al inventario de nuestra empresa.
-\item Cada suministro se identifica con un código y el DNI de su proveedor. Además incluye fecha, y el importe total.
-\item Tenemos vehículos cuyo identificador único es el número VIN.
+\item Cada suministro se identifica con un código numérico y el DNI de su proveedor. Además incluye fecha, y el importe total.
+\item Tenemos vehículos cuyo identificador único es el código alfanumérico VIN.
 \item Los vehículos cuentan con el color de pintura y precio de venta.
 \item Los vehículos, si son usados, tienen kilometraje. Si son nuevos, este será 0.
+\item Todos los vehículos son inspeccionados por uno o más mecánicos, se registra la fecha de inspección.
 \item Todos los vehículos cuentan con una transmisión.
 \item La transmisión puede ser de 3 tipos: automática, manual o secuencial.
-\item Los vehículos cuentan con un solo motor.
-\item El motor se identifica por su código alfanumérico. Además, este tiene como atributos su marca, tipo de combustible, disposición, número de cilindros, cilindrada, y finalmente, la potencia.
+\item Los vehículos cuentan con un solo motor. Un tipo de motor puede encontrarse en muchos vehículos, o igualmente, en ninguno.
+\item El motor se identifica por su código alfanumérico correspondiente a su modelo. Además se identifica por su marca, tipo de combustible, número de cilindros, cilindrada, y finalmente, la potencia.
 \item Cada vehículo corresponde a exactamente un Modelo.
 \item Todos los modelos se identifican por su ID numérico único, además tienen Marca, Nombre, Año y Precio Sugerido.
-\item Hay 4 categorías de Modelo: Auto, camioneta, moto y camión.
+\item Hay 4 categorías de Modelo: auto, camioneta, moto y camión.
 \end{itemize}
 
 \subsection{Modelo Entidad-Relaci\'on}
@@ -261,11 +264,29 @@ Contiene información específica de cada vehículo que se ha tenido en stock, c
 \section{Modelo Relacional}
 
 \subsection{Modelo Relacional}
+
+\begin{enumerate}
+\item Asesor(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), RUC: VARCHAR(11), Salario: FLOAT)
+\item Mecánico(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), RUC: VARCHAR(11), Salario: FLOAT)
+\item Cliente(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50))
+\item Proveedor(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), Empresa.RUC: VARCHAR(11))
+\item Empresa(\textbf{\underline{RUC: VARCHAR(8)}}, RazonSocial: VARCHAR(100))
+\item Compra(\textbf{\underline{Cliente.DNI: VARCHAR(8)}, \underline{Código: INT}}, Vehículo.VIN:, Asesor.DNI, Fecha: DATE)
+\item Suministro(\textbf{\underline{Proveedor.DNI: VARCHAR(8)}, \underline{Código: INT}}, Fecha: DATE, Importe: FLOAT)
+\item Vehículo(\textbf{\underline{VIN: VARCHAR(17)}}, Color: VARCHAR(20), Precio: FLOAT, Kilometraje: INT, Transmisión: VARCHAR(10), Motor.Código: VARCHAR(20), Modelo.ID: INT, Modelo.Categoria: VARCHAR(20))
+\item Motor(\textbf{\underline{Código: VARCHAR(20)}}, Marca: VARCHAR(20), Combustible: VARCHAR(20), Cilindros: INT, Cilindrada: INT, Potencia: INT)
+\item Modelo(\textbf{\underline{ID: INT}}, Marca: VARCHAR(20), Nombre: VARCHAR(20), Año: INT, PrecioSugerido: FLOAT)
+\item ServicioPostventa(\textbf{\underline{Cliente.DNI: VARCHAR(8)}, \underline{Orden: INT}}, Fecha: DATE, Tipo : VARCHAR(15), Costo: FLOAT)
+\item m\_inspecciona(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{Vehiculo.VIN: VARCHAR(17)}}, Fecha: DATE )
+\item m\_realiza(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{ServicioPostventa.Orden: INT}}, \underline{Cliente.DNI: VARCHAR(8)})
+\end{enumerate}
+
 \subsection{Especificaciones de transformaci\'on}
 
 \subsubsection{Entidades}
 
-
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Asesor \\
@@ -274,9 +295,15 @@ Clave Primaria & \textbf{\underline{DNI}} \\
 \hline
 Clave Foránea & RUC \\
 \hline
-\end{tabular}
+\end{tabular}        
+\caption{Tabla Asesor}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Mecánico \\
@@ -286,8 +313,14 @@ Clave Primaria & \textbf{\underline{DNI}} \\
 Clave Foránea & RUC \\
 \hline
 \end{tabular}
+\caption{Tabla Mecánico}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Proveedor \\
@@ -297,8 +330,14 @@ Clave Primaria & \textbf{\underline{DNI}} \\
 Clave Foránea & Empresa.RUC \\
 \hline
 \end{tabular}
+\caption{Tabla Proveedor}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Empresa \\
@@ -308,9 +347,14 @@ Clave Primaria & \textbf{\underline{RUC}} \\
 Clave Foránea & N/A \\
 \hline
 \end{tabular}
+\caption{Tabla Empresa}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
-
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Vehículo \\
@@ -320,8 +364,14 @@ Clave Primaria & \textbf{\underline{VIN}} \\
 Clave Foránea & Motor.Código, Modelo.ID, Cliente.DNI \\
 \hline
 \end{tabular}
+\caption{Tabla Vehículo}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Motor \\
@@ -331,8 +381,14 @@ Clave Primaria & \textbf{\underline{Código}} \\
 Clave Foránea & N/A \\
 \hline
 \end{tabular}
+\caption{Tabla Motor}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Modelo \\
@@ -342,11 +398,16 @@ Clave Primaria & \textbf{\underline{ID}} \\
 Clave Foránea & N/A \\
 \hline
 \end{tabular}
+\caption{Tabla Modelo}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
 \subsubsection{Entidades d\'ebiles}
 
-
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Compra \\
@@ -356,8 +417,14 @@ Clave Primaria & \textbf{\underline{Cliente.DNI}}, \textbf{\underline{Código}} 
 Clave Foránea & Asesor.DNI, Vehículo.VIN \\
 \hline
 \end{tabular}
+\caption{Tabla Compra}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Suministro \\
@@ -367,8 +434,14 @@ Clave Primaria & \textbf{\underline{Proveedor.DNI}}, \textbf{\underline{Código}
 Clave Foránea & N/A \\
 \hline
 \end{tabular}
+\caption{Tabla Suministro}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & ServicioPostventa \\
@@ -378,6 +451,11 @@ Clave Primaria & \textbf{\underline{Cliente.DNI}}, \textbf{\underline{Orden}}, \
 Clave Foránea & N/A \\
 \hline
 \end{tabular}
+\caption{Tabla ServicioPostventa}
+\label{tab:tablas}
+\end{center}
+\end{table}
+
 
 
 \subsubsection{Entidades superclase/subclase}
@@ -386,6 +464,8 @@ Clave Foránea & N/A \\
 
 \subsubsection{Relaciones binarias}
 
+\begin{table}[htbp]
+\begin{center}
 \begin{tabular}{|c|c|}
 \hline
 Tabla & m\_inspecciona \\
@@ -395,8 +475,26 @@ Clave Primaria & \textbf{\underline{Mecánico.DNI}}, \textbf{\underline{Vehícul
 Clave Foránea & N/A \\
 \hline
 \end{tabular}
+\caption{Tabla m\_inspecciona}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
-\subsubsection{Relaciones ternarias}
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Tabla & m\_realiza \\
+\hline
+Clave Primaria & \textbf{\underline{Mecánico.DNI}}, \textbf{\underline{ServicioPostVenta.Orden}} \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}
+\caption{Tabla m\_inspecciona}
+\label{tab:tablas}
+\end{center}
+\end{table}
 
 \subsection{Diccionario de datos}
 
