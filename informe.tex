@@ -11,16 +11,33 @@
 
 \begin{document}
 
-\title{Autoland Data Structure}
+\title{Proyecto Base de Datos 1 \\
+       \large Autoland}
 
-\author{Lucas Carranza 202210073,\nDavid Herencia 202210408,\nFrancisco Calle 202210065}
+\author{Lucas Carranza 202210073 \and
+        David Herencia 202210408 \and
+        Francisco Calle 202210065}
 
-
-\date{2022}
+\date{2023}
 
 \maketitle
 
-\setstretch{1.5}
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{autoland.jpeg}
+\end{figure}
+
+\begin{center} 
+
+    \noindent Docente: Docente: Chambilla Aquino, Teófilo
+    
+    \noindent Curso: Base de Datos I
+    
+    \noindent Universidad de Ingeniería y Tecnología
+
+\end{center}
+
+\newpage
 
 \tableofcontents
 
@@ -81,21 +98,53 @@ son consultas de inventario, consultas de clientes y consultas de ventas realiza
 
 El tamaño de la base de datos es directamente proporcional al tamaño del negocio, así como la frecuencia de las ventas. El tamaño del negocion nos da una perspectiva de la cantidad de vehículos en stock por vez, y la frecuencia de las ventas nos da una perspectiva de la tasa de crecimiento de las tablas de clientes y compras.
 
-En el caso de autoland, estimamos unas 40 ventas por mes, y aproximadamente 5000 ventas anuales. Esto nos da un estimado de una entrada de al menos 100 000 datos anuales, incluyendo la información de los suministros, los clientes, las compras, y las especificaciones de los vehículos.
+En el caso de autoland, un negocio con 10 locales en todo lima, y un total de unos 300-400 vehículos en stock por vez, estimamos una venta por día, y aproximadamente 360 ventas anuales.
 
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Tabla} & \textbf{Tamaño de atributos} & \textbf{Total} \\ \hline
-Cliente       &                            & 10             \\ \hline
-Asesor        & 10                           & 10             \\ \hline
-Proveedor     & 10                           & 10             \\ \hline
-Empresa       & 10                           & 10             \\ \hline
-Compra        & 10                           & 10             \\ \hline
-Suministro    & 10                           & 10             \\ \hline
-Vehículo      & 10                           & 10             \\ \hline
-Motor         & 10                           & 10             \\ \hline
-Modelo        & 10                           & 10             \\ \hline
-\end{tabular}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|p{4cm}|p{4cm}|}
+    \hline
+    \textbf{Nombre de la tabla} & \textbf{Longitud de atributo en Bytes} & \textbf{Longitud del registro en Bytes} \\ \hline
+    Asesor                      & 8 + 50 + 50 + 11 + 4                  & 123                                    \\ \hline
+    Mecánico                    & 8 + 50 + 50 + 11 + 4                  & 123                                    \\ \hline
+    Cliente                     & 8 + 50 + 50                           & 108                                    \\ \hline
+    Proveedor                   & 8 + 50 + 50 + 11                      & 119                                    \\ \hline
+    Empresa                     & 8 + 100                               & 108                                    \\ \hline
+    Compra                      & 8 + 4 + 17 + 8 + 4                    & 41                                     \\ \hline
+    Suministro                  & 8 + 4 + 4 + 4                         & 20                                     \\ \hline
+    Vehículo                    & 17 + 20 + 4 + 4 + 10 + 20 + 4 + 20 + 1 & 100                                    \\ \hline
+    Motor                       & 20 + 20 + 20 + 4 + 4 + 4              & 72                                     \\ \hline
+    Modelo                      & 4 + 20 + 20 + 4 + 4                   & 52                                     \\ \hline
+    ServicioPostVenta           & 8 + 4 + 4 + 15 + 4                    & 35                                     \\ \hline
+    m\_inspecciona              & 8 + 17 + 4                            & 29                                     \\ \hline
+    m\_realiza                  & 8 + 4 + 8                             & 20                                     \\ \hline
+    \end{tabular}
+    \caption{Estimación de la Base de Datos}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Nombre de la tabla} & \textbf{Datos estimados anualmente} & \textbf{Tamaño en Bytes} & \textbf{Total anual} \\ \hline
+    Asesor                      & 40         & 123 & 4920                                   \\ \hline
+    Mecánico                    & 40         & 123 & 4920                                   \\ \hline
+    Cliente                     & 320        & 108 & 34560                                  \\ \hline
+    Proveedor                   & 60         & 119 & 7140                                   \\ \hline
+    Empresa                     & 20         & 108 & 2160                                   \\ \hline
+    Compra                      & 360        & 41 & 14760                                 \\ \hline
+    Suministro                  & 300        & 20 & 6000                                   \\ \hline
+    Vehículo                    & 600        & 100 & 60000                                   \\ \hline
+    Motor                       & 75         & 72 & 5400                                    \\ \hline
+    Modelo                      & 150        & 52 & 7800                                    \\ \hline
+    ServicioPostVenta           & 800        & 35  & 28000                                  \\ \hline
+    m\_inspecciona              & 1000       & 29  & 29000                                  \\ \hline
+    m\_realiza                  & 2000       & 20 & 40000                                   \\ \hline
+    \end{tabular}
+    \caption{Estimación del tamaño tras un año}
+\end{table}
+
+\textbf{TOTAL:} 244660 Bytes
 
 \subsection{Objetivos del proyecto}
 
@@ -194,7 +243,7 @@ A continuación, el modelo entidad-relación que representa la base de datos:
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{ER.jpg}
+\includegraphics[width=1\textwidth]{ER.jpg}
 \caption{Modelo Entidad-Relación}
 \end{figure}
 
@@ -723,31 +772,37 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
 \end{table}
 
 
-\begin{table}[htbp]
+\begin{table}[h]
     \begin{center}
-        \begin{tabular}{|p{3cm}|p{3cm}|p{1cm}|p{1cm}|p{6cm}|}
+        \begin{tabular}{|l|l|}
+            \multicolumn{2}{l}{\textbf{m\_realiza}} \\
             \hline
-            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+            Tabla & m\_realiza \\ \hline        
+            Entidades & Mecanico, ServicioPostventa \\ \hline
+            Nombre Relación & Realiza \\ \hline
+            Atributos Relación &  \\ \hline
+            Clave Primaria & Mecanico.DNI, ServicioPostventa.Orden \\ \hline
+            Clave Foranea ServicioPostventa & ServicioPostventa.Orden \\ \hline
+            Clave Foranea Mecanico & Mecanico.DNI \\
             \hline
-            Mecanico.DNI & VARCHAR(8) & X & X & Número de identificación del mecánico \\
-            Vehiculo.VIN & VARCHAR(17) & X & X & Número de identificación del vehículo inspeccionado \\
-            Fecha & DATE &  &  & Fecha de la inspección \\
-            \hline
-        \end{tabular}
-        \caption{Tabla m\_inspecciona}
+            \end{tabular}
+        \caption{Tabla m\_realiza}
         \label{tab:tablas}
     \end{center}
 \end{table}
 
-
-\begin{table}[htbp]
+\begin{table}[h]
     \begin{center}
-        \begin{tabular}{|p{5cm}|p{3cm}|p{1cm}|p{1cm}|p{4cm}|}
+        \begin{tabular}{|l|l|}
+            \multicolumn{2}{l}{\textbf{m\_inspecciona}} \\
             \hline
-            Nombre Campo & Tipo de dato & PK & FK & Descripción \\
-            \hline
-            Mecanico.DNI & VARCHAR(8) & X & X & Número de identificación del mecánico \\
-            ServicioPostventa.Orden & INT & X & X & Número de orden del servicio postventa realizado por el mecánico \\
+            Tabla & m\_inspecciona \\ \hline        
+            Entidades & Vehiculo, Mecanico \\ \hline
+            Nombre Relación & Inspecciona \\ \hline
+            Atributos Relación & Fecha \\ \hline
+            Clave Primaria & Mecanico.DNI, Vehiculo.VIN \\ \hline
+            Clave Foranea Vehiculo & Vehiculo.VIN \\ \hline
+            Clave Foranea Mecanico & Mecanico.DNI \\
             \hline
             \end{tabular}
         \caption{Tabla m\_realiza}
