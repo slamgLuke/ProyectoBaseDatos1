@@ -238,7 +238,6 @@ A continuación, el modelo entidad-relación que representa la base de datos:
 
 \subsubsection{Entidades}
 
-Tabla Asesor
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Asesor \\
@@ -249,7 +248,6 @@ Clave Foránea & RUC \\
 \hline
 \end{tabular}
 
-Tabla Mecánico
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Mecánico \\
@@ -260,7 +258,6 @@ Clave Foránea & RUC \\
 \hline
 \end{tabular}
 
-Tabla Proveedor
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Proveedor \\
@@ -271,7 +268,6 @@ Clave Foránea & Empresa.RUC \\
 \hline
 \end{tabular}
 
-Tabla Empresa
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Empresa \\
@@ -282,29 +278,8 @@ Clave Foránea & N/A \\
 \hline
 \end{tabular}
 
-Tabla Compra
-\begin{tabular}{|c|c|}
-\hline
-Tabla & Compra \\
-\hline
-Clave Primaria & \textbf{\underline{Cliente.DNI}}, \textbf{\underline{Código}} \\
-\hline
-Clave Foránea & Asesor.DNI, Vehículo.VIN \\
-\hline
-\end{tabular}
 
-Tabla Suministro
-\begin{tabular}{|c|c|}
-\hline
-Tabla & Suministro \\
-\hline
-Clave Primaria & \textbf{\underline{Proveedor.DNI}}, \textbf{\underline{Código}}, \textbf{\underline{Fecha}} \\
-\hline
-Clave Foránea & N/A \\
-\hline
-\end{tabular}
 
-Tabla Vehículo
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Vehículo \\
@@ -315,7 +290,6 @@ Clave Foránea & Motor.Código, Modelo.ID, Cliente.DNI \\
 \hline
 \end{tabular}
 
-Tabla Motor
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Motor \\
@@ -326,7 +300,6 @@ Clave Foránea & N/A \\
 \hline
 \end{tabular}
 
-Tabla Modelo
 \begin{tabular}{|c|c|}
 \hline
 Tabla & Modelo \\
@@ -337,7 +310,29 @@ Clave Foránea & N/A \\
 \hline
 \end{tabular}
 
-Tabla ServicioPostventa
+
+\subsubsection{Entidades d\'ebiles}
+
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Compra \\
+\hline
+Clave Primaria & \textbf{\underline{Cliente.DNI}}, \textbf{\underline{Código}} \\
+\hline
+Clave Foránea & Asesor.DNI, Vehículo.VIN \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Suministro \\
+\hline
+Clave Primaria & \textbf{\underline{Proveedor.DNI}}, \textbf{\underline{Código}}, \textbf{\underline{Fecha}} \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}
+
 \begin{tabular}{|c|c|}
 \hline
 Tabla & ServicioPostventa \\
@@ -349,11 +344,47 @@ Clave Foránea & N/A \\
 \end{tabular}
 
 
-\subsubsection{Entidades d\'ebiles}
 \subsubsection{Entidades superclase/subclase}
+
+
+
 \subsubsection{Relaciones binarias}
 \subsubsection{Relaciones ternarias}
 
 \subsection{Diccionario de datos}
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+\hline
+DNI & VARCHAR(8) & X &  & Número de identificación del asesor \\
+Nombres & VARCHAR(50) &  &  & Nombres del asesor \\
+Apellidos & VARCHAR(50) &  &  & Apellidos del asesor \\
+RUC & VARCHAR(11) &  &  & Registro Único del Contribuyente del asesor \\
+Salario & FLOAT &  &  & Salario del asesor \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+\hline
+DNI & VARCHAR(8) & X &  & Número de identificación del mecánico \\
+Nombres & VARCHAR(50) &  &  & Nombres del mecánico \\
+Apellidos & VARCHAR(50) &  &  & Apellidos del mecánico \\
+RUC & VARCHAR(11) &  &  & Registro Único del Contribuyente del mecánico \\
+Salario & FLOAT &  &  & Salario del mecánico \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Nombre Campo & Tipo de dato & PK & FK & Descripción \\
+\hline
+DNI & VARCHAR(8) & X &  & Número de identificación del cliente \\
+Nombres & VARCHAR(50) &  &  & Nombres del cliente \\
+Apellidos & VARCHAR(50) &  &  & Apellidos del cliente \\
+\hline
+\end{tabular}
 
 \end{document}

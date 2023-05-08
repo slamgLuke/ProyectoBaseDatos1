@@ -23,7 +23,7 @@
 \contentsline {subsubsection}{\numberline {2.3.1}Entidadad Persona}{9}{subsubsection.2.3.1}%
 \contentsline {subsubsection}{\numberline {2.3.2}Entidadad Cliente}{9}{subsubsection.2.3.2}%
 \contentsline {subsubsection}{\numberline {2.3.3}Entidadad Asesor}{9}{subsubsection.2.3.3}%
-\contentsline {subsubsection}{\numberline {2.3.4}Entidad Mecánico}{9}{subsubsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.4}Entidad Mecánico}{10}{subsubsection.2.3.4}%
 \contentsline {subsubsection}{\numberline {2.3.5}Entidadad Proveedor}{10}{subsubsection.2.3.5}%
 \contentsline {subsubsection}{\numberline {2.3.6}Entidad Empresa}{10}{subsubsection.2.3.6}%
 \contentsline {subsubsection}{\numberline {2.3.7}Entidad Suministro}{10}{subsubsection.2.3.7}%
@@ -35,7 +35,7 @@
 \contentsline {subsection}{\numberline {3.1}Modelo Relacional}{11}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Especificaciones de transformaci\'on}{11}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Entidades}{11}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Entidades d\'ebiles}{12}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2}Entidades d\'ebiles}{11}{subsubsection.3.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.3}Entidades superclase/subclase}{12}{subsubsection.3.2.3}%
 \contentsline {subsubsection}{\numberline {3.2.4}Relaciones binarias}{12}{subsubsection.3.2.4}%
 \contentsline {subsubsection}{\numberline {3.2.5}Relaciones ternarias}{12}{subsubsection.3.2.5}%
