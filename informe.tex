@@ -3,7 +3,7 @@
 \documentclass[12pt]{article}
 
 \title{Avance 1 - Proyecto Base de Datos I}
-\author{Grupo ...}
+\author{}
 
 \usepackage{graphicx}
 \usepackage{listings}
@@ -70,6 +70,19 @@ Los proveedores registran la lista de vehículos al realizar el suministro. Igua
 
 son consultas de inventario, consultas de clientes y consultas de ventas realizadas. Las actualizaciones que se esperan son actualizaciones de inventario, actualizaciones de clientes y actualizaciones de ventas realizadas.
 
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Tabla} & \textbf{Tamaño de atributos} & \textbf{Total} \\ \hline
+Cliente       &                            & 10             \\ \hline
+Asesor        & 10                           & 10             \\ \hline
+Proveedor     & 10                           & 10             \\ \hline
+Empresa       & 10                           & 10             \\ \hline
+Compra        & 10                           & 10             \\ \hline
+Suministro    & 10                           & 10             \\ \hline
+Vehículo      & 10                           & 10             \\ \hline
+Motor         & 10                           & 10             \\ \hline
+Modelo        & 10                           & 10             \\ \hline
+\end{tabular}
 \subsubsection{Tama\~no de la base de datos}
 
 El tamaño de la base de datos es directamente proporcional al tamaño del negocio, así como la frecuencia de las ventas. El tamaño del negocion nos da una perspectiva de la cantidad de vehículos en stock por vez, y la frecuencia de las ventas nos da una perspectiva de la tasa de crecimiento de las tablas de clientes y compras.
@@ -77,25 +90,146 @@ El tamaño de la base de datos es directamente proporcional al tamaño del negoc
 En el caso de autoland, estimamos unas 40 ventas por mes, y aproximadamente 5000 ventas anuales. Esto nos da un estimado de una entrada de al menos 100 000 datos anuales, incluyendo la información de los suministros, los clientes, las compras, y las especificaciones de los vehículos.
 
 \subsection{Objetivos del proyecto}
+
+
+
 \subsection{Referencias del proyecto}
+
+El proyecto se inspiró en tiendas de autos como Autoland, que tienen un gran stock de vehículos y que necesitan llevar un registro de los mismos, así como de los clientes y las ventas realizadas. Originalmente planeamos un portal en línea como neoauto donde se pueden comprar y vender vehículos, pero decidimos que una base de datos para una tienda funcionaría mejor.
+
 \subsection{Eventualidades}
 
 \subsubsection{Problemas que pudieran encontrarse en el proyecto}
+
+Nuestro proyecto cuenta con las siguientes posibles problemas:
+
+\begin{itemize}
+
+\item No se incluye un sistema de autenticación de usuarios, por lo que no se puede distinguir entre los diferentes tipos de usuarios (clientes, asesores de ventas, proveedores) cuando se filtre por su llave única (DNI).
+
+\item La base de datos no considera servicios de mantenimiento, ni de reparación de vehículos.
+
+\item Se ha priorizado el entendimiento del modelo por encima de la eficiencia de las consultas, por lo que el tiempo de consultas puede no ser el ideal.
+
+
+
+\end{itemize}
+
+
 \subsubsection{Limites y alcances del proyecto}
+
+\begin{itemize}
+
+\item Alcances
+
+Este proyecto tendrá un alcance a cualquier tienda con un modelo de negocio compatible dentro del país, y se espera que sea usada por una tienda de venta de vehículos como Autoland, la cual cuenta con sedes en diversos distritos de la ciudad de Lima Metropolitana.
+
+\item Limites
+
+Este proyecto no aplica para tiendas de venta de vehículos que no tengan un modelo de negocio compatible, como por ejemplo, tiendas de venta de vehículos de segunda mano que compran a personas naturales en vez de personas jurídicas (empresas). Tampoco considera negocios que lidien con extranjeros, sea al contratarlos como asesores, o al vender a clientes sin documento de identidad nacional (DNI).
+
+
+\end{itemize}
 
 
 \section{Modelo Entidad-Relaci\'on}
 
 \subsection{Reglas sem\'anticas}
+
+A continuación, las reglas semánticas que definen el fucionamiento de la base de datos.
+
+\begin{itemize}
+\item La tienda contrata asesores de ventas que se encargan de supervisar la venta de vehículos. Cuentan con DNI, RUC, Nombres, Apellidos y Salario.
+\item La tienda contrata mecánicos que se encargan de inspeccionar los vehículos antes de su venta, así como realizar servicios de mantenimiento y reparación a los clientes. Cuentan con DNI, RUC, Nombres, Apellidos y Salario.
+\item Los clientes se identifican con su DNI, Nombres y Apellidos. Para ser considerado cliente, debe haber realizado por lo menos una compra.
+\item Los proveedores son los agentes que nos suministran de vehículos. Se identifican con su DNI. Cuentan con nombres, apellidos, y el RUC de la empresa en la que trabaja. Cada proveedor trabaja para una sola empresa, que se identifica con su razón social y RUC.
+\item Los clientes pueden realizar múltiples compras (las compras dependen del cliente).
+\item La compra de un vehículo debe ser atendida solo por un asesor de ventas, y se registra con un código numérico único, fecha, DNI del cliente, DNI del asesor y VIN del vehículo.
+\item Cada compra corresponde a la adquisición de un solo vehículo.
+\item Los proveedores realizan suministros. Para ser registrado como proveedor debe haber realizado mínimo un suministro a la tienda.
+\item Cada suministro corresponde a un solo proveedor. Igualmente no existe sin éste.
+\item Cada suministro añade uno o más vehículos al inventario de nuestra empresa.
+\item Cada suministro se identifica con un código y el DNI de su proveedor. Además incluye fecha, y el importe total.
+\item Tenemos vehículos cuyo identificador único es el número VIN.
+\item Los vehículos cuentan con el color de pintura y precio de venta.
+\item Los vehículos, si son usados, tienen kilometraje. Si son nuevos, este será 0.
+\item Todos los vehículos cuentan con una transmisión.
+\item La transmisión puede ser de 3 tipos: automática, manual o secuencial.
+\item Los vehículos cuentan con un solo motor.
+\item El motor se identifica por su código alfanumérico. Además, este tiene como atributos su marca, tipo de combustible, disposición, número de cilindros, cilindrada, y finalmente, la potencia.
+\item Cada vehículo corresponde a exactamente un Modelo.
+\item Todos los modelos se identifican por su ID numérico único, además tienen Marca, Nombre, Año y Precio Sugerido.
+\item Hay 4 categorías de Modelo: Auto, camioneta, moto y camión.
+\end{itemize}
+
 \subsection{Modelo Entidad-Relaci\'on}
+
+A continuación, el modelo entidad-relación que representa la base de datos:
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{ER.jpg}
+\caption{Modelo Entidad-Relación}
+\end{figure}
+
 \subsection{Especificaciones y conseideraciones sobre el modelo}
 
 \subsubsection{Entidadad Persona}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
 \subsubsection{Entidadad Cliente}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
 \subsubsection{Entidadad Asesor}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
+\subsubsection{Entidad Mecánico}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
 \subsubsection{Entidadad Proveedor}
-\subsubsection{...}
-% Aqui van las demas entidades
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
+\subsubsection{Entidad Empresa}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
+\subsubsection{Entidad Suministro}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
+\subsubsection{Entidad Compra}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
+\subsubsection{Entidad Vehículo}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
+\subsubsection{Entidad Modelo}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
+
+\subsubsection{Entidad ServicioPostVenta}
+\textbf{Especificaciones}
+
+\textbf{Consideraciones}
+
 
 \section{Modelo Relacional}
 
@@ -103,6 +237,118 @@ En el caso de autoland, estimamos unas 40 ventas por mes, y aproximadamente 5000
 \subsection{Especificaciones de transformaci\'on}
 
 \subsubsection{Entidades}
+
+Tabla Asesor
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Asesor \\
+\hline
+Clave Primaria & \textbf{\underline{DNI}} \\
+\hline
+Clave Foránea & RUC \\
+\hline
+\end{tabular}
+
+Tabla Mecánico
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Mecánico \\
+\hline
+Clave Primaria & \textbf{\underline{DNI}} \\
+\hline
+Clave Foránea & RUC \\
+\hline
+\end{tabular}
+
+Tabla Proveedor
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Proveedor \\
+\hline
+Clave Primaria & \textbf{\underline{DNI}} \\
+\hline
+Clave Foránea & Empresa.RUC \\
+\hline
+\end{tabular}
+
+Tabla Empresa
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Empresa \\
+\hline
+Clave Primaria & \textbf{\underline{RUC}} \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}
+
+Tabla Compra
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Compra \\
+\hline
+Clave Primaria & \textbf{\underline{Cliente.DNI}}, \textbf{\underline{Código}} \\
+\hline
+Clave Foránea & Asesor.DNI, Vehículo.VIN \\
+\hline
+\end{tabular}
+
+Tabla Suministro
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Suministro \\
+\hline
+Clave Primaria & \textbf{\underline{Proveedor.DNI}}, \textbf{\underline{Código}}, \textbf{\underline{Fecha}} \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}
+
+Tabla Vehículo
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Vehículo \\
+\hline
+Clave Primaria & \textbf{\underline{VIN}} \\
+\hline
+Clave Foránea & Motor.Código, Modelo.ID, Cliente.DNI \\
+\hline
+\end{tabular}
+
+Tabla Motor
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Motor \\
+\hline
+Clave Primaria & \textbf{\underline{Código}} \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}
+
+Tabla Modelo
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Modelo \\
+\hline
+Clave Primaria & \textbf{\underline{ID}} \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}
+
+Tabla ServicioPostventa
+\begin{tabular}{|c|c|}
+\hline
+Tabla & ServicioPostventa \\
+\hline
+Clave Primaria & \textbf{\underline{Cliente.DNI}}, \textbf{\underline{Orden}}, \textbf{\underline{Fecha}} \\
+\hline
+Clave Foránea & N/A \\
+\hline
+\end{tabular}
+
+
 \subsubsection{Entidades d\'ebiles}
 \subsubsection{Entidades superclase/subclase}
 \subsubsection{Relaciones binarias}
