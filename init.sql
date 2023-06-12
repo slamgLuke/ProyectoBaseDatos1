@@ -82,4 +82,18 @@ CREATE TABLE suministro (
     representante_dni varchar(8) NOT NULL REFERENCES representante(dni)
 );
 
+CREATE TABLE serviciopostventa (
 
+);
+
+CREATE TABLE inspeccion (
+
+);
+
+CREATE TABLE m_trabaja (
+    
+);
+
+CREATE TABLE m_inspecciona (
+    
+);
