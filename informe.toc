@@ -19,18 +19,18 @@
 \contentsline {section}{\numberline {2}Modelo Entidad-Relaci\'on}{10}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Reglas sem\'anticas}{10}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Modelo Entidad-Relaci\'on}{12}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Especificaciones y consideraciones sobre el modelo}{12}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Entidad Persona}{12}{subsubsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3}Especificaciones y consideraciones sobre el modelo}{13}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Entidad Persona}{13}{subsubsection.2.3.1}%
 \contentsline {subsubsection}{\numberline {2.3.2}Entidad Cliente}{13}{subsubsection.2.3.2}%
 \contentsline {subsubsection}{\numberline {2.3.3}Entidad Asesor}{13}{subsubsection.2.3.3}%
 \contentsline {subsubsection}{\numberline {2.3.4}Entidad Mecánico}{13}{subsubsection.2.3.4}%
-\contentsline {subsubsection}{\numberline {2.3.5}Entidad Proveedor}{14}{subsubsection.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.3.5}Entidad Representante}{14}{subsubsection.2.3.5}%
 \contentsline {subsubsection}{\numberline {2.3.6}Entidad Empresa}{14}{subsubsection.2.3.6}%
 \contentsline {subsubsection}{\numberline {2.3.7}Entidad Suministro}{14}{subsubsection.2.3.7}%
-\contentsline {subsubsection}{\numberline {2.3.8}Entidad Compra}{14}{subsubsection.2.3.8}%
+\contentsline {subsubsection}{\numberline {2.3.8}Entidad Compra}{15}{subsubsection.2.3.8}%
 \contentsline {subsubsection}{\numberline {2.3.9}Entidad Vehículo}{15}{subsubsection.2.3.9}%
 \contentsline {subsubsection}{\numberline {2.3.10}Entidad Modelo}{15}{subsubsection.2.3.10}%
-\contentsline {subsubsection}{\numberline {2.3.11}Entidad ServicioPostVenta}{15}{subsubsection.2.3.11}%
+\contentsline {subsubsection}{\numberline {2.3.11}Entidad ServicioPostVenta}{16}{subsubsection.2.3.11}%
 \contentsline {section}{\numberline {3}Modelo Relacional}{16}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Modelo Relacional}{16}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Especificaciones de transformaci\'on}{18}{subsection.3.2}%

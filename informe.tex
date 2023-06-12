@@ -58,7 +58,7 @@ El problema recae en el monitoreo y manejo de la información de esta gran canti
 
 \subsection{Necesidad/usos de la base de datos}
 
-La base de datos es necesaria para llevar un control de los vehículos que se compran, se venden y los que se encuentran en inventario, así como también para llevar un registro de los clientes, los asesores de venta y los proveedores.
+La base de datos es necesaria para llevar un control de los vehículos que se compran, se venden y los que se encuentran en inventario, así como también para llevar un registro de los clientes, los asesores de venta y los representantes.
 
 \subsection{¿Cómo resuelve el problema de hoy?}
 
@@ -70,7 +70,7 @@ Actualmente los datos se almacenan en archivos físicos (papel) y en hojas de c�
 
 \subsubsection{Flujo de datos}
 
-El flujo de datos actual comienza con el suministro de vehículos realizado por parte de los proveedores, seguido de la recepción de los vehículos por parte de la tienda. En caso de que el modelo o motor del vehículo no estén registrados, se tienen que añadir previamente a las tablas correspondientes. A continuación, los vehículos son agregados al inventario de la tienda. Los clientes consultan el inventario y realizan compras, supervisadas por los asesores de ventas. Por último, la orden de compra es registrada y el vehiculo deja de ser mostrado en el inventario de la tienda. Los clientes pueden consultar el historial de compras que han realizado ellos.
+El flujo de datos actual comienza con el suministro de vehículos realizado por parte de los representantes, seguido de la recepción de los vehículos por parte de la tienda. En caso de que el modelo o motor del vehículo no estén registrados, se tienen que añadir previamente a las tablas correspondientes. A continuación, los vehículos son agregados al inventario de la tienda. Los clientes consultan el inventario y realizan compras, supervisadas por los asesores de ventas. Por último, la orden de compra es registrada y el vehiculo deja de ser mostrado en el inventario de la tienda. Los clientes pueden consultar el historial de compras que han realizado ellos.
 
 \subsection{Descripci\'on detallada del sistema}
 
@@ -84,13 +84,13 @@ Se espera que la base de datos permita llevar un registro de los vehículos en i
 
 \subsubsection{Tipos de usuarios existentes/necesarios}
 
-Los tipos de usuarios necesarios son los asesores de ventas, los clientes y los proveedores. Se espera que el proveedor brinde la información requerida de cada vehículo suministrado, la cual será incorporada en la base de datos. Así se elimina la necesidad de añadir manualmente con un administrador.
+Los tipos de usuarios necesarios son los asesores de ventas, los clientes y los representantes. Se espera que el representante brinde la información requerida de cada vehículo suministrado, la cual será incorporada en la base de datos. Así se elimina la necesidad de añadir manualmente con un administrador.
 
 \subsubsection{Tipos de consulta, actualizaciones}
 
 Los tipos de consulta y actualización que se esperan por parte de los clientes son: Consulta del stock (vehículos),  consulta de las compras realizadas. Actualización (Eliminar/ocultar) la lista de vehículos al realizar la compra, registro de la compra.
 
-Los proveedores registran la lista de vehículos al realizar el suministro. Igualmente registran en motor y modelo cuando se añaden vehículos con estos no presentes.
+Los representantes registran la lista de vehículos al realizar el suministro. Igualmente registran en motor y modelo cuando se añaden vehículos con estos no presentes.
 
 son consultas de inventario, consultas de clientes y consultas de ventas realizadas. Las actualizaciones que se esperan son actualizaciones de inventario, actualizaciones de clientes y actualizaciones de ventas realizadas.
 
@@ -111,7 +111,7 @@ En el caso de autoland, un negocio con 10 locales en todo lima, y un total de un
     Asesor                      & 8 + 50 + 50 + 11 + 4                  & 123                                    \\ \hline
     Mecánico                    & 8 + 50 + 50 + 11 + 4                  & 123                                    \\ \hline
     Cliente                     & 8 + 50 + 50                           & 108                                    \\ \hline
-    Proveedor                   & 8 + 50 + 50 + 11                      & 119                                    \\ \hline
+    representante                   & 8 + 50 + 50 + 11                      & 119                                    \\ \hline
     Empresa                     & 8 + 100                               & 108                                    \\ \hline
     Compra                      & 8 + 4 + 17 + 8 + 4                    & 41                                     \\ \hline
     Suministro                  & 8 + 4 + 4 + 4                         & 20                                     \\ \hline
@@ -133,7 +133,7 @@ En el caso de autoland, un negocio con 10 locales en todo lima, y un total de un
     Asesor                      & 40         & 123 & 4920                                   \\ \hline
     Mecánico                    & 40         & 123 & 4920                                   \\ \hline
     Cliente                     & 320        & 108 & 34560                                  \\ \hline
-    Proveedor                   & 60         & 119 & 7140                                   \\ \hline
+    representante                   & 60         & 119 & 7140                                   \\ \hline
     Empresa                     & 20         & 108 & 2160                                   \\ \hline
     Compra                      & 360        & 41 & 14760                                 \\ \hline
     Suministro                  & 300        & 20 & 6000                                   \\ \hline
@@ -173,7 +173,7 @@ Nuestro proyecto cuenta con las siguientes posibles problemas:
 
 \begin{itemize}
 
-\item No se incluye un sistema de autenticación de usuarios, por lo que no se puede distinguir entre los diferentes tipos de usuarios (clientes, asesores de ventas, proveedores) cuando se filtre por su llave única (DNI).
+\item No se incluye un sistema de autenticación de usuarios, por lo que no se puede distinguir entre los diferentes tipos de usuarios (clientes, asesores de ventas, representantes) cuando se filtre por su llave única (DNI).
 
 \item La base de datos no considera servicios de garantía, por lo que no se puede llevar un registro de los servicios de garantía que se ofrecen a los clientes.
 
@@ -212,31 +212,41 @@ Este proyecto no aplica para tiendas de venta de vehículos que no tengan un mod
 
 \subsection{Reglas sem\'anticas}
 
-A continuación, las reglas semánticas que definen el fucionamiento de la base de datos.
+A continuación, las reglas semánticas que definen el fucionamiento de la base de datos:
 
 \begin{itemize}
 \item La tienda contrata asesores de ventas que se encargan de supervisar la venta de vehículos. Cuentan con DNI, RUC, Nombres, Apellidos y Salario.
 \item La tienda contrata mecánicos. Cuentan con DNI, RUC, Nombres, Apellidos y Salario. Estos pueden encargarse de realizar inspecciones a vehículos antes de su adquisición por parte de la tienda, o servicios de postventa a los clientes.
 \item Los clientes se identifican con su DNI, Nombres y Apellidos. Para ser considerado cliente, debe haber realizado por lo menos una compra.
-\item Los proveedores son los agentes que nos suministran de vehículos. Se identifican con su DNI. Cuentan con nombres, apellidos, y el RUC de la empresa en la que trabaja. Cada proveedor trabaja para una sola empresa, que se identifica con su razón social y RUC.
-\item Los clientes pueden realizar múltiples compras (las compras dependen del cliente).
-\item La compra de un vehículo debe ser atendida solo por un asesor de ventas, y se registra con un código numérico único, fecha, DNI del cliente, DNI del asesor y VIN del vehículo.
+\item Los representantes son los agentes que se encargan de representar a las compañías que nos suministran de vehículos (por política de la tienda, no se lidia con las empresas directamente). Se identifican con su DNI. Cuentan con nombres y apellidos. Cada representante trabaja para una sola empresa, que se identifica con su razón social y RUC.
+
+\item Los clientes pueden realizar múltiples compras.
+\item La compra de un vehículo debe ser atendida solo por un asesor de ventas, y se registra con un código numérico único, y la fecha en la que se realizó.
 \item Cada compra corresponde a la adquisición de un solo vehículo.
-\item Un cliente tiene la posibilidad de acceder a cero o más servicios de postventa. Este servicio sólo existe gracias al cliente.
-\item El servicio de postventa es realizado por uno o más mecánicos. Se identifica con el número de orden en el que se realizó. Además, se registra la fecha en la que se realizó, el tipo de servicio (reparación, mantenimiento, pintura) y el costo.
-\item Los proveedores realizan suministros. Para ser registrado como proveedor debe haber realizado mínimo un suministro a la tienda.
-\item Cada suministro corresponde a un solo proveedor. Igualmente no existe sin éste.
+
+\item Un cliente tiene la posibilidad de acceder a cero o más servicios de postventa. Este servicio sólo está disponible si el cliente ha realizado una compra.
+\item El servicio de postventa se identifica con el número de orden en el que se realizó. Además, se registra la fecha de inicio y fin, el tipo de servicio (reparación, mantenimiento, pintura) y el costo.
+\item Múltiples mecánicos pueden trabajar en un servicio de postventa. Cada fecha que un mecánico trabaja en uno se registra, junto con el costo del material usado en el servicio para ese día.
+
+\item Los representantes realizan suministros. Para ser registrado como representante debe haber realizado mínimo un suministro a la tienda.
+\item Cada suministro corresponde a un solo representante.
 \item Cada suministro añade uno o más vehículos al inventario de nuestra empresa.
-\item Cada suministro se identifica con un código numérico y el DNI de su proveedor. Además incluye fecha, y el importe total.
+\item Cada suministro se identifica con un código numérico. Además incluye la fecha en la que se realizó.
+
 \item Tenemos vehículos cuyo identificador único es el código alfanumérico VIN.
 \item Los vehículos cuentan con el color de pintura y precio de venta.
 \item Los vehículos, si son usados, tienen kilometraje. Si son nuevos, este será 0.
-\item Todos los vehículos son inspeccionados por uno o más mecánicos, se registra la fecha de inspección.
+\item Se registra el precio al que se compró el vehículo, y el precio al que se venderá a los clientes.
+
+\item Todos los vehículos son inspeccionados por lo menos una vez por uno o más mecánicos, se registra la fecha de inspección y se identifica con el número de esta.
+\item Cada inspección corresponde a un vehículo. Cada vehículo puede ser inspeccionado múltiples veces de ser necesario.
+
 \item Todos los vehículos cuentan con una transmisión.
-\item Se debe registrar si los vehículos se encuentra en stock o no. Cuando se adquiere un vehículo, está en stock, y cuando se vende, deja de estarlo.
 \item La transmisión puede ser de 3 tipos: automática, manual o secuencial.
+
 \item Los vehículos cuentan con un solo motor. Un tipo de motor puede encontrarse en muchos vehículos, o igualmente, en ninguno.
 \item El motor se identifica por su código alfanumérico correspondiente a su modelo. Además se identifica por su marca, tipo de combustible, número de cilindros, cilindrada, y finalmente, la potencia.
+
 \item Cada vehículo corresponde a exactamente un Modelo.
 \item Todos los modelos se identifican por su ID numérico único, además tienen Marca, Nombre, Año y Precio Sugerido.
 \item Hay 4 categorías de Modelo: auto, camioneta, moto y camión.
@@ -244,11 +254,11 @@ A continuación, las reglas semánticas que definen el fucionamiento de la base 
 
 \subsection{Modelo Entidad-Relaci\'on}
 
-A continuación, el modelo entidad-relación que representa la base de datos:
+A continuación, el modelo entidad-relación que representa a la base de datos:
 
 \begin{figure}
 \centering
-\includegraphics[width=1\textwidth]{ER.jpg}
+\includegraphics[width=1\textwidth]{ER.png}
 \caption{Modelo Entidad-Relación}
 \end{figure}
 
@@ -257,7 +267,7 @@ A continuación, el modelo entidad-relación que representa la base de datos:
 \subsubsection{Entidad Persona}
 \textbf{Especificaciones}
 
-Clase padre de Cliente, Asesor, Mecánico y Proveedor. Contiene la información necesaria para identificarlos como sus Nombres y Apellidos, y su llave primaria es el DNI.
+Clase padre de Cliente, Asesor, Mecánico y representante. Contiene la información necesaria para identificarlos como sus Nombres y Apellidos, y su llave primaria es el DNI.
 
 \textbf{Consideraciones}
 
@@ -266,7 +276,7 @@ Se usa el DNI como llave primaria por la posibilidad de homonimia y la facilidad
 \subsubsection{Entidad Cliente}
 \textbf{Especificaciones}
 
-Subclase de Persona usada para los Clientes, no contiene atributos adicionales. Su llave primaria es el DNI.
+Subclase de Persona usada para los Clientes, no contiene atributos adicionales, pues no se solicitan datos adicionales sobre el cliente. Su llave primaria es el DNI.
 
 \textbf{Consideraciones}
 
@@ -288,16 +298,16 @@ Contiene información específica del mecánico, como su Salario y RUC personal,
 
 \textbf{Consideraciones}
 
-Un mecánico puede realizar múltiples servicios de postventa, por lo que se establece una relación entre las entidades Mecánico y ServicioPostVenta. Igulamente puede realizar inspecciones a los vehiculos, por lo que se establece la relación con Vehículo.
+Un mecánico puede realizar múltiples servicios de postventa, por lo que se establece una relación entre las entidades Mecánico y ServicioPostVenta. Igulamente puede realizar inspecciones a los vehiculos, por lo que se establece la relación con la entidad Inspección, la cual se relaciona con Vehículo, debido a la posibilidad de múltiples inspecciones al mismo vehículo por el mismo mecánico.
 
-\subsubsection{Entidad Proveedor}
+\subsubsection{Entidad Representante}
 \textbf{Especificaciones}
 
-Contiene información específica del proveedor, como su , y su llave primaria es su nombre.
+Subclase de Persona usada para los representantes de las empresas a las que la tienda compra vehículos. No contiene información específica de su clase, y su llave primaria es su nombre.
 
 \textbf{Consideraciones}
 
-Un proveedor puede proveer múltiples suministros, por lo que se establece una relación entre las entidades Proveedor y Suministro.
+Un representante puede proveer múltiples suministros, por lo que se establece una relación entre las entidades Representante y Suministro.
 
 \subsubsection{Entidad Empresa}
 \textbf{Especificaciones}
@@ -306,21 +316,21 @@ Contiene información específica de la empresa, como su Razón Social, y su lla
 
 \textbf{Consideraciones}
 
-Una empresa puede tener múltiples empleados que son proveedores a nuestra tienda, por lo que se establece una relación entre las entidades Empresa, Proveedor. Su RUC es único por lo que se utiliza convenientemente como clave primaria.
+Una empresa puede tener múltiples empleados que son representantes a nuestra tienda, por lo que se establece una relación entre las entidades Empresa, representante. Su RUC es único por lo que se utiliza convenientemente como clave primaria.
 
 \subsubsection{Entidad Suministro}
 \textbf{Especificaciones}
 
-Contiene información específica del suministro realizado por un proveedor, como su fecha y el importe total. Su llave primaria es código numérico junto con el DNI del proveedor.
+Contiene información específica del suministro realizado por un representante, como la fecha en la que se realizó. Su llave primaria es código numérico asignado. Absorbe como llave foránea el DNI del representante.
 
 \textbf{Consideraciones}
 
-Suministro es una entidad débil de Proveedor, pues no existe sin este. Además, un suministro puede incluir múltiples vehículos, por lo que se establece una relación entre las entidades Suministro y Vehículo. El código numérico es asignado de manera ordenada y no se repite.
+Un suministro puede incluir múltiples vehículos, por lo que se establece una relación entre las entidades Suministro y Vehículo. El código numérico es asignado de manera ordenada y no se repite.
 
 \subsubsection{Entidad Compra}
 \textbf{Especificaciones}
 
-Contiene información específica de la compra, como la fecha en la que se realizó y el VIN del vehículo comprado. Su llave primaria es un código numérico junto con el DNI del cliente.
+Contiene información específica de la compra, como la fecha en la que se realizó. Su llave primaria es el código numérico. Absorbe como llaves foráneas el DNI del cliente y el VIN del vehículo comprado.
 
 \textbf{Consideraciones}
 
@@ -329,7 +339,7 @@ Compra es una relación débil de Cliente, pues no existe sin este. Una compra i
 \subsubsection{Entidad Vehículo}
 \textbf{Especificaciones}
 
-Contiene información específica de cada vehículo que ha pasado por stock. Se almacena su marca, modelo, tipo de transmisión, color, precio, kilometraje y si se encuentra en stock. Recibe como llaves foráneas al código de su motor y el id del modelo. Su llave primaria es su código VIN.
+Contiene información específica de cada vehículo que ha pasado por la tienda. Se almacena su marca, modelo, tipo de transmisión, color, precio, kilometraje, su precio de compra en el suministro, y su precio para la venta. Recibe como llaves foráneas al código de su motor y el id del modelo, así como el cóðigo del suministro con el que se obtuvo. Su llave primaria es su código VIN.
 
 \textbf{Consideraciones}
 
@@ -339,7 +349,7 @@ Se utiliza el código VIN pues es un número único asignado a cada vehículo al
 \subsubsection{Entidad Modelo}
 \textbf{Especificaciones}
 
-Contiene información específica de cada modelo de vehículo. Se almacena su marca, nombre, año y precio sugerido. Recibe como llave foránea al id de su marca. Su llave primaria es su id numérico asignado por la tienda.
+Contiene información específica de cada modelo de vehículo relevante a la tienda. Se almacena su marca, nombre, año y precio sugerido. Su llave primaria es su id numérico asignado por la tienda.
 
 \textbf{Consideraciones}
 
@@ -348,24 +358,23 @@ Se utiliza un id numérico pues es más fácil de manejar que el nombre del mode
 \subsubsection{Entidad ServicioPostVenta}
 \textbf{Especificaciones}
 
-Contiene información específica de cada servicio de postventa. Se almacena la fecha en la que se realizó, el tipo del servicio y el costo total. Su llave primaria está conformada por el DNI del cliente que pide el servicio y el código del orden en el que se realiza.
+Contiene información específica de cada servicio de postventa. Se almacena la fecha en la que se realizó, el tipo del servicio, el costo a pagar, la fecha de inicio y la fecha del final. Su llave primaria está conformada por el código de la compra del vehículo en el que se realiza, y el código del orden en el que se realiza.
 
 \textbf{Consideraciones}
 
-Servicio de PostVenta es una entidad débil de Cliente, pues si el cliente no accede a este no existe. Se utiliza el código de orden pues es un número único asignado a cada servicio de postventa. Un servicio de postventa puede ser realizado por uno o más mecánicos, por lo que se establece una relación entre las entidades ServicioPostVenta y Mecánico.
+Servicio de PostVenta es una entidad débil de Compra, pues no se puede identificar sin el vehículo comprado al que se realiza. Se utiliza el número de orden como llave parcial, pues es un número único asignado a cada servicio de postventa. Un servicio de postventa puede ser realizado por uno o más mecánicos, por lo que se establece una relación entre las entidades ServicioPostVenta y Mecánico, y se registra en que momento trabajaron en este, y cual fue el costo de los insumos utilizados en este día de trabajo.
 
 \section{Modelo Relacional}
 
 \subsection{Modelo Relacional}
-
 \begin{enumerate}
 \item Asesor(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), RUC: VARCHAR(11), Salario: FLOAT)
 \item Mecánico(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), RUC: VARCHAR(11), Salario: FLOAT)
 \item Cliente(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50))
-\item Proveedor(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), Empresa.RUC: VARCHAR(11))
+\item representante(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), Empresa.RUC: VARCHAR(11))
 \item Empresa(\textbf{\underline{RUC: VARCHAR(8)}}, RazonSocial: VARCHAR(100))
 \item Compra(\textbf{\underline{Cliente.DNI: VARCHAR(8)}, \underline{Código: INT}}, Vehículo.VIN:, Asesor.DNI, Fecha: DATE)
-\item Suministro(\textbf{\underline{Proveedor.DNI: VARCHAR(8)}, \underline{Código: INT}}, Fecha: DATE, Importe: FLOAT)
+\item Suministro(\textbf{\underline{representante.DNI: VARCHAR(8)}, \underline{Código: INT}}, Fecha: DATE, Importe: FLOAT)
 \item Vehículo(\textbf{\underline{VIN: VARCHAR(17)}}, Color: VARCHAR(20), Precio: FLOAT, Kilometraje: INT, Transmisión: VARCHAR(10), EnStock: BOOLEAN, Motor.Código: VARCHAR(20), Modelo.ID: INT, Modelo.Categoria: VARCHAR(20))
 \item Motor(\textbf{\underline{Código: VARCHAR(20)}}, Marca: VARCHAR(20), Combustible: VARCHAR(20), Cilindros: INT, Cilindrada: INT, Potencia: INT)
 \item Modelo(\textbf{\underline{ID: INT}}, Marca: VARCHAR(20), Nombre: VARCHAR(20), Año: INT, PrecioSugerido: FLOAT)
@@ -483,9 +492,9 @@ Entidad Débil & Suministro \\
 \hline
 Entidad Fuerte & Cliente \\
 \hline
-Clave Primaria & Proveedor.DNI, Código \\
+Clave Primaria & Representante.DNI, Código \\
 \hline
-Clave Foránea & Proveedor.DNI \\
+Clave Foránea & Representante.DNI \\
 \hline
 \end{tabular}
 \caption{Tabla Suministro}
@@ -526,7 +535,8 @@ Tabla & Persona \\
 \hline
 Entidad Superclase & Persona \\
 \hline
-Entidad Subclase & Cliente, Mecánico, Asesor, Proveedor \\
+Entidad Subclase & Cliente, Mecánico, Asesor, Representante \\
+\hline
 Clave Primaria & DNI \\
 \hline
 Clave Foránea & N/A \\
@@ -549,7 +559,7 @@ Tabla & m\_inspecciona \\
 \hline
 Clave Primaria & Mecánico.DNI, Vehículo.VIN \\
 \hline
-Clave Foránea & N/A \\
+Clave Foránea & Mecánico.DNI, Vehículo.VIN \\
 \hline
 \end{tabular}
 \caption{Tabla m\_inspecciona}
@@ -638,13 +648,13 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
-            DNI & VARCHAR(8) & X &  & Número de identificación del proveedor \\
-            Nombres & VARCHAR(50) &  &  & Nombres del proveedor \\
-            Apellidos & VARCHAR(50) &  &  & Apellidos del proveedor \\
-            Empresa.RUC & VARCHAR(11) &  & X & Registro Único del Contribuyente de la empresa proveedora \\
+            DNI & VARCHAR(8) & X &  & Número de identificación del representante \\
+            Nombres & VARCHAR(50) &  &  & Nombres del representante \\
+            Apellidos & VARCHAR(50) &  &  & Apellidos del representante \\
+            Empresa.RUC & VARCHAR(11) &  & X & Registro Único del Contribuyente de la empresa representantea \\
             \hline
             \end{tabular}
-        \caption{Tabla Proveedor}
+        \caption{Tabla representante}
         \label{tab:tablas}
     \end{center}
 \end{table}
@@ -691,7 +701,7 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
-            Proveedor.DNI & VARCHAR(8) & X & X & Número de identificación del proveedor \\
+            Representante.DNI & VARCHAR(8) & X & X & Número de identificación del representante \\
             Código & INT & X &  & Código del suministro \\
             Fecha & DATE &  &  & Fecha del suministro \\
             Importe & FLOAT &  &  & Importe del suministro \\
