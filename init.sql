@@ -92,7 +92,7 @@ CREATE TABLE vehiculo (
 
 -- 3fn
 -- codigo -> f,cdni,vvin,adni
--- vehiculo_vin -> f,cdni,vvin,adni
+-- vehiculo_vin -> f,cdni,vvin,adni,codigo
 -- vehiculo_vin y codigo son llaves candidatas
 CREATE TABLE compra (
     codigo int PRIMARY KEY,
