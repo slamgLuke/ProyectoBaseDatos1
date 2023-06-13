@@ -19,23 +19,24 @@
 \contentsline {section}{\numberline {2}Modelo Entidad-Relaci\'on}{11}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Reglas sem\'anticas}{11}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Modelo Entidad-Relaci\'on}{13}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Especificaciones y consideraciones sobre el modelo}{14}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Entidad Persona}{14}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Entidad Cliente}{14}{subsubsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.3}Entidad Asesor}{14}{subsubsection.2.3.3}%
-\contentsline {subsubsection}{\numberline {2.3.4}Entidad Mecánico}{14}{subsubsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3}Especificaciones y consideraciones sobre el modelo}{13}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Entidad Persona}{13}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Entidad Cliente}{13}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Entidad Asesor}{15}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Entidad Mecánico}{15}{subsubsection.2.3.4}%
 \contentsline {subsubsection}{\numberline {2.3.5}Entidad Representante}{15}{subsubsection.2.3.5}%
 \contentsline {subsubsection}{\numberline {2.3.6}Entidad Empresa}{15}{subsubsection.2.3.6}%
-\contentsline {subsubsection}{\numberline {2.3.7}Entidad Suministro}{15}{subsubsection.2.3.7}%
+\contentsline {subsubsection}{\numberline {2.3.7}Entidad Suministro}{16}{subsubsection.2.3.7}%
 \contentsline {subsubsection}{\numberline {2.3.8}Entidad Compra}{16}{subsubsection.2.3.8}%
 \contentsline {subsubsection}{\numberline {2.3.9}Entidad Vehículo}{16}{subsubsection.2.3.9}%
-\contentsline {subsubsection}{\numberline {2.3.10}Entidad Modelo}{16}{subsubsection.2.3.10}%
+\contentsline {subsubsection}{\numberline {2.3.10}Entidad Modelo}{17}{subsubsection.2.3.10}%
 \contentsline {subsubsection}{\numberline {2.3.11}Entidad ServicioPostVenta}{17}{subsubsection.2.3.11}%
-\contentsline {section}{\numberline {3}Modelo Relacional}{17}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Modelo Relacional}{17}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Especificaciones de transformaci\'on}{19}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Entidades}{19}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Entidades d\'ebiles}{20}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Entidades superclase/subclase}{21}{subsubsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.4}Relaciones binarias}{22}{subsubsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.3}Diccionario de datos}{23}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.12}Entidad Inspeccion}{17}{subsubsection.2.3.12}%
+\contentsline {section}{\numberline {3}Modelo Relacional}{18}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Modelo Relacional}{18}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Especificaciones de transformaci\'on}{20}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Entidades}{20}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Entidades d\'ebiles}{21}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Entidades superclase/subclase}{22}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Relaciones binarias}{23}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Diccionario de datos}{24}{subsection.3.3}%
