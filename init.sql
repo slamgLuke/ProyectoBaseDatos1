@@ -73,7 +73,7 @@ CREATE TABLE compra (
     fecha date NOT NULL,
     cliente_dni varchar(8) NOT NULL REFERENCES cliente(dni),
     vehiculo_vin varchar(17) NOT NULL REFERENCES vehiculo(vin),
-    asesor_dni varchar(8) NOT NULL REFERENCES asesor(dni),
+    asesor_dni varchar(8) NOT NULL REFERENCES asesor(dni)
 );
 
 CREATE TABLE suministro (
@@ -83,17 +83,39 @@ CREATE TABLE suministro (
 );
 
 CREATE TABLE serviciopostventa (
-
+    compra_codigo int NOT NULL REFERENCES compra(codigo),
+    orden int NOT NULL,
+    fechainicio date NOT NULL,
+    fechafin date NOT NULL,
+    costo numeric(10,2) NOT NULL,
+    tipo varchar(15) NOT NULL
 );
+
+ALTER TABLE serviciopostventa 
+ADD CONSTRAINT serviciopostventa_pk PRIMARY KEY (compra_codigo, orden);
 
 CREATE TABLE inspeccion (
-
-);
-
-CREATE TABLE m_trabaja (
-    
+    nro int PRIMARY KEY,
+    fecha date NOT NULL,
+    vehiculo_vin varchar(17) NOT NULL REFERENCES vehiculo(vin)
 );
 
 CREATE TABLE m_inspecciona (
-    
+    mecanico_dni varchar(8) NOT NULL,
+    inspeccion_nro int NOT NULL
 );
+
+ALTER TABLE m_inspecciona
+ADD CONSTRAINT m_inspecciona_pk PRIMARY KEY (mecanico_dni, inspeccion_nro);
+
+CREATE TABLE m_trabaja (
+    mecanico_dni varchar(8) NOT NULL,
+    compra_codigo int NOT NULL,
+    serviciopostventa_orden int NOT NULL,
+    fecha date NOT NULL,
+    preciomaterial numeric(10,2) NOT NULL
+);
+
+ALTER TABLE m_trabaja
+ADD CONSTRAINT m_trabaja_pk PRIMARY KEY (mecanico_dni, compra_codigo, serviciopostventa_orden);
+
