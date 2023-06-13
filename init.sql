@@ -42,8 +42,8 @@ CREATE TABLE representante (
 
 CREATE TABLE modelo (
     id int PRIMARY KEY,
-    marca varchar(50) NOT NULL,
-    nombre varchar(50) NOT NULL,
+    marca varchar(20) NOT NULL,
+    nombre varchar(20) NOT NULL,
     anio int NOT NULL,
     preciosugerido numeric(10,2) NOT NULL,
     categoria varchar(10) NOT NULL
@@ -66,7 +66,8 @@ CREATE TABLE vehiculo (
     kilometraje int NOT NULL,
     transmision varchar(10) NOT NULL,
     motor_codigo varchar(20) NOT NULL REFERENCES motor(codigo),
-    modelo_id int NOT NULL REFERENCES modelo(id)
+    modelo_id int NOT NULL REFERENCES modelo(id),
+    suministro_codigo int NOT NULL REFERENCES suministro(codigo)
 );
 
 CREATE TABLE compra (

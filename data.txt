@@ -6,4 +6,4 @@
 (auto|moto|camion|camioneta)
 (gasolina|diesel|glp|hibrido)
 (automatica|manual|secuencial)
-
+(mantenimiento|reparacion|pintura)

@@ -291,8 +291,6 @@ Un cliente puede realizar múltiples compras y acceder a múltiples servicios de
 
 Contiene información específica del asesor, como su Salario y su RUC personal, y su llave primaria es el DNI.
 
-\textbf{Consideraciones}
-
 Un asesor puede atender múltiples compras, por lo que se establece una relación entre las entidades Asesor y Compra. 
 
 \subsubsection{Entidad Mecánico}
@@ -368,23 +366,35 @@ Contiene información específica de cada servicio de postventa. Se almacena la 
 
 Servicio de PostVenta es una entidad débil de Compra, pues no se puede identificar sin el vehículo comprado al que se realiza. Se utiliza el número de orden como llave parcial, pues es un número único asignado a cada servicio de postventa. Un servicio de postventa puede ser realizado por uno o más mecánicos, por lo que se establece una relación entre las entidades ServicioPostVenta y Mecánico, y se registra en que momento trabajaron en este, y cual fue el costo de los insumos utilizados en este día de trabajo.
 
+\subsubsection{Entidad Inspeccion}
+\textbf{Especificaciones}
+
+Contiene información específica a las inspecciones que se realizan a los vehículos que pasan por la tienda. Se almacena la fecha en la que se realizó, y se utiliza un número como llave primaria.
+
+\textbf{Consideraciones}
+
+Se relaciona directamente con vehículo, donde cada inspección corresponde a exactamente un vehículo. Igualmente, se vincula con la relación m\_inspecciona a la entidad mecánico, donde se almacena la relación que especifica que mecánico trabajo en cual inspección.
+
 \section{Modelo Relacional}
 
 \subsection{Modelo Relacional}
 \begin{enumerate}
-\item Asesor(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), RUC: VARCHAR(11), Salario: FLOAT)
-\item Mecánico(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), RUC: VARCHAR(11), Salario: FLOAT)
+\item Asesor(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), RUC: VARCHAR(11), Salario: NUMERIC(10,2))
+\item Mecánico(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), RUC: VARCHAR(11), Salario: NUMERIC(10,2))
 \item Cliente(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50))
-\item representante(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), Empresa.RUC: VARCHAR(11))
-\item Empresa(\textbf{\underline{RUC: VARCHAR(8)}}, RazonSocial: VARCHAR(100))
-\item Compra(\textbf{\underline{Cliente.DNI: VARCHAR(8)}, \underline{Código: INT}}, Vehículo.VIN:, Asesor.DNI, Fecha: DATE)
-\item Suministro(\textbf{\underline{representante.DNI: VARCHAR(8)}, \underline{Código: INT}}, Fecha: DATE, Importe: FLOAT)
-\item Vehículo(\textbf{\underline{VIN: VARCHAR(17)}}, Color: VARCHAR(20), Precio: FLOAT, Kilometraje: INT, Transmisión: VARCHAR(10), EnStock: BOOLEAN, Motor.Código: VARCHAR(20), Modelo.ID: INT, Modelo.Categoria: VARCHAR(20))
+\item Representante(\textbf{\underline{DNI: VARCHAR(8)}}, Nombres: VARCHAR(50), Apellidos: VARCHAR(50), Empresa.RUC: VARCHAR(11))
+\item Empresa(\textbf{\underline{RUC: VARCHAR(8)}}, RazonSocial: VARCHAR(50))
+    
+\item Compra(\textbf{\underline{Código: INT}}, Fecha: DATE, Cliente.DNI: VARCHAR(8), Vehículo.VIN: VARCHAR(8), Asesor.DNI: VARCHAR(8))
+\item Suministro(\textbf{\underline{Código: INT}}, Fecha: DATE, Representante.DNI: VARCHAR(8))
+\item Vehículo(\textbf{\underline{VIN: VARCHAR(17)}}, Color: VARCHAR(20), PrecioCompra: NUMERIC(10,2), PrecioVenta: NUMERIC(10,2), Kilometraje: INT, Transmisión: VARCHAR(10), Motor.Código: VARCHAR(20), Modelo.ID: INT)
 \item Motor(\textbf{\underline{Código: VARCHAR(20)}}, Marca: VARCHAR(20), Combustible: VARCHAR(20), Cilindros: INT, Cilindrada: INT, Potencia: INT)
-\item Modelo(\textbf{\underline{ID: INT}}, Marca: VARCHAR(20), Nombre: VARCHAR(20), Año: INT, PrecioSugerido: FLOAT)
-\item ServicioPostventa(\textbf{\underline{Cliente.DNI: VARCHAR(8)}, \underline{Orden: INT}}, Fecha: DATE, Tipo : VARCHAR(15), Costo: FLOAT)
-\item m\_inspecciona(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{Vehiculo.VIN: VARCHAR(17)}}, Fecha: DATE)
-\item m\_trabaja(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{ServicioPostventa.Orden: INT}}, \underline{Cliente.DNI: VARCHAR(8)})
+\item Modelo(\textbf{\underline{ID: INT}}, Marca: VARCHAR(20), Nombre: VARCHAR(20), Anio: INT, PrecioSugerido: NUMERIC(10,2), Categoria: VARCHAR(10))
+
+\item ServicioPostventa(\textbf{\underline{Compra.codigo: INT}, \underline{Orden: INT}}, FechaInicio: DATE, FechaFin: DATE, Tipo: VARCHAR(15), Costo: NUMERIC(10,2))
+\item Inspeccion(\textbf{\underline{nro: INT}}, FECHA: DATE, Vehículo.VIN: VARCHAR(17))
+\item m\_inspecciona(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{Inspeccion.nro}}, Fecha: DATE)
+\item m\_trabaja(\textbf{\underline{Mecanico.DNI: VARCHAR(8)}, \underline{Compra.orden}, \underline{ServicioPostventa.Orden: INT}}, Fecha: DATE, PrecioMaterial: NUMERIC(10, 2))
 \end{enumerate}
 
 \newpage
@@ -418,7 +428,7 @@ Tabla & Vehículo \\
 \hline
 Clave Primaria & VIN \\
 \hline
-Clave Foránea & Motor.Código, Modelo.ID \\
+Clave Foránea & Motor.Código, Modelo.ID, Suministro.Código \\
 \hline
 \end{tabular}
 \caption{Tabla Vehículo}
@@ -459,27 +469,35 @@ Clave Foránea & N/A \\
 
 \newpage
 
-\subsubsection{Entidades d\'ebiles}
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Tabla & Inspección \\
+\hline
+Clave Primaria & Nro \\
+\hline
+Clave Foránea & Vehículo.VIN \\
+\hline
+\end{tabular}
+\caption{Tabla Inspección}
+\end{center}
+\end{table}
 
 \begin{table}[htbp]
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
-Tabla & Compra \\
+Tabla & Copmra \\
 \hline
-Entidad Débil & Compra \\
+Clave Primaria & Código \\
 \hline
-Entidad Fuerte & Cliente \\
-\hline
-Clave Primaria & Cliente.DNI, Código \\
-\hline
-Clave Foránea & Cliente.DNI, Asesor.DNI, Vehículo.VIN \\
+Clave Foránea & Cliente.DNI, Vehículo.VIN, Asesor.DNI \\
 \hline
 \end{tabular}
 \caption{Tabla Compra}
 \end{center}
 \end{table}
-
 
 \begin{table}[htbp]
 \begin{center}
@@ -487,11 +505,7 @@ Clave Foránea & Cliente.DNI, Asesor.DNI, Vehículo.VIN \\
 \hline
 Tabla & Suministro \\
 \hline
-Entidad Débil & Suministro \\
-\hline
-Entidad Fuerte & Cliente \\
-\hline
-Clave Primaria & Representante.DNI, Código \\
+Clave Primaria & Código \\
 \hline
 Clave Foránea & Representante.DNI \\
 \hline
@@ -500,6 +514,7 @@ Clave Foránea & Representante.DNI \\
 \end{center}
 \end{table}
 
+\subsubsection{Entidades d\'ebiles}
 
 \begin{table}[htbp]
 \begin{center}
@@ -553,9 +568,9 @@ Clave Foránea & N/A \\
 \hline
 Tabla & m\_inspecciona \\
 \hline
-Clave Primaria & Mecánico.DNI, Vehículo.VIN \\
+Clave Primaria & Mecánico.DNI, Inspección.nro \\
 \hline
-Clave Foránea & Mecánico.DNI, Vehículo.VIN \\
+Clave Foránea & Mecánico.DNI, Inspección.nro \\
 \hline
 \end{tabular}
 \caption{Tabla m\_inspecciona}
@@ -568,12 +583,12 @@ Clave Foránea & Mecánico.DNI, Vehículo.VIN \\
 \hline
 Tabla & m\_trabaja \\
 \hline
-Clave Primaria & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
+Clave Primaria & Mecánico.DNI, Compra.codigo, ServicioPostVenta.Orden \\
 \hline
-Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
+Clave Foránea & Mecánico.DNI, Compra.codigo, ServicioPostVenta.Orden \\
 \hline
 \end{tabular}
-\caption{Tabla m\_inspecciona}
+\caption{Tabla m\_trabaja}
 \end{center}
 \end{table}
 
@@ -591,11 +606,11 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
         Nombres & VARCHAR(50) &  &  & Nombres del asesor \\
         Apellidos & VARCHAR(50) &  &  & Apellidos del asesor \\
         RUC & VARCHAR(11) &  &  & Registro Único del Contribuyente del asesor \\
-        Salario & FLOAT &  &  & Salario del asesor \\
+        Salario & NUMERIC(10,2) &  &  & Salario del asesor \\
         \hline
         \end{tabular}
         \caption{Tabla Asesor}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -609,11 +624,11 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             Nombres & VARCHAR(50) &  &  & Nombres del mecánico \\
             Apellidos & VARCHAR(50) &  &  & Apellidos del mecánico \\
             RUC & VARCHAR(11) &  &  & Registro Único del Contribuyente del mecánico \\
-            Salario & FLOAT &  &  & Salario del mecánico \\
+            Salario & NUMERIC(10,2) &  &  & Salario del mecánico \\
             \hline
             \end{tabular}
         \caption{Tabla Mecanico}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -629,7 +644,7 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             \end{tabular}
         \caption{Tabla Cliente}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -646,7 +661,7 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             \end{tabular}
         \caption{Tabla representante}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -656,12 +671,12 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
-            RUC & VARCHAR(8) & X &  & Registro Único del Contribuyente de la empresa \\
-            RazonSocial & VARCHAR(100) &  &  & Razón social de la empresa \\
+            RUC & VARCHAR(11) & X &  & Registro Único del Contribuyente de la empresa \\
+            RazonSocial & VARCHAR(50) &  &  & Razón social de la empresa \\
             \hline
             \end{tabular}
         \caption{Tabla Empresa}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -679,7 +694,7 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
         \end{tabular}
         \caption{Tabla Compra}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -689,14 +704,14 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             Nombre Campo & Tipo de dato & PK & FK & Descripción \\
             \hline
-            Representante.DNI & VARCHAR(8) & X & X & Número de identificación del representante \\
             Código & INT & X &  & Código del suministro \\
             Fecha & DATE &  &  & Fecha del suministro \\
-            Importe & FLOAT &  &  & Importe del suministro \\
+            Importe & NUMERIC(10,2) &  &  & Importe del suministro \\
+            Representante.DNI & VARCHAR(8) &  & X & Número de identificación del representante \\
             \hline
             \end{tabular}
         \caption{Tabla Suministro}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -708,16 +723,18 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             VIN & VARCHAR(17) & X &  & Número de identificación del vehículo \\
             Color & VARCHAR(20) &  &  & Color del vehículo \\
-            Precio & FLOAT &  &  & Precio del vehículo \\
+            PrecioCompra & NUMERIC(10,2) &  &  & Precio de adquisición del vehículo \\
+            PrecioVenta & NUMERIC(10,2) &  &  & Precio de venta del vehículo \\
             Kilometraje & INT &  &  & Kilometraje del vehículo \\
             Transmisión & VARCHAR(10) &  &  & Tipo de transmisión del vehículo \\
             Motor.Código & VARCHAR(20) &  & X & Código del motor del vehículo \\
             Modelo.ID & INT &  & X & ID del modelo del vehículo \\
             Modelo.Categoria & VARCHAR(20) &  & X & Categoría del modelo del vehículo \\
+            Suministro.Código & INT &  & X & Código del suministro del vehículo \\
             \hline
             \end{tabular}
         \caption{Tabla Vehiculo}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -736,7 +753,7 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             \end{tabular}
         \caption{Tabla Motor}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -750,11 +767,12 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             Marca & VARCHAR(20) &  &  & Marca del modelo \\
             Nombre & VARCHAR(20) &  &  & Nombre del modelo \\
             Año & INT &  &  & Año del modelo \\
-            PrecioSugerido & FLOAT &  &  & Precio sugerido del del auto\\
+            PrecioSugerido & NUMERIC(10,2) &  &  & Precio sugerido en el mercado \\
+            Categoria & VARCHAR(20) &  &  & Categoría del modelo \\
             \hline
         \end{tabular}
         \caption{Tabla Modelo}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -766,13 +784,14 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             Cliente.DNI & VARCHAR(8) & X & X & Número de identificación del cliente \\
             Orden & INT & X &  & Número de orden del servicio postventa \\
-            Fecha & DATE &  &  & Fecha del servicio postventa \\
+            FechaInicio & DATE &  &  & Fecha del inicio del servicio \\
+            FechaFin & DATE &  &  & Fecha del fin del servicio \\
             Tipo & VARCHAR(15) &  &  & Tipo de servicio postventa \\
-            Costo & FLOAT &  &  & Costo del servicio postventa \\
+            Costo & NUMERIC(10,2) &  &  & Costo del servicio postventa \\
             \hline
         \end{tabular}
         \caption{Tabla ServicioPostventa}
-            \end{center}
+    \end{center}
 \end{table}
 
 
@@ -791,7 +810,7 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             \end{tabular}
         \caption{Tabla m\_trabaja}
-            \end{center}
+    \end{center}
 \end{table}
 
 \begin{table}[h]
@@ -809,7 +828,7 @@ Clave Foránea & Mecánico.DNI, ServicioPostVenta.Orden, Cliente.DNI \\
             \hline
             \end{tabular}
         \caption{Tabla m\_trabaja}
-            \end{center}
+    \end{center}
 \end{table}
 
 \end{document}
