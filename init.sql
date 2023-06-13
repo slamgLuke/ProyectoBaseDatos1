@@ -61,7 +61,8 @@ CREATE TABLE motor (
 CREATE TABLE vehiculo (
     vin varchar(17) PRIMARY KEY,
     color varchar(20) NOT NULL,
-    precio numeric(10,2) NOT NULL,
+    preciocompra numeric(10,2) NOT NULL,
+    precioventa numeric(10,2) NOT NULL,
     kilometraje int NOT NULL,
     transmision varchar(10) NOT NULL,
     motor_codigo varchar(20) NOT NULL REFERENCES motor(codigo),
@@ -88,11 +89,9 @@ CREATE TABLE serviciopostventa (
     fechainicio date NOT NULL,
     fechafin date NOT NULL,
     costo numeric(10,2) NOT NULL,
-    tipo varchar(15) NOT NULL
+    tipo varchar(15) NOT NULL,
+    PRIMARY KEY (compra_codigo, orden)
 );
-
-ALTER TABLE serviciopostventa 
-ADD CONSTRAINT serviciopostventa_pk PRIMARY KEY (compra_codigo, orden);
 
 CREATE TABLE inspeccion (
     nro int PRIMARY KEY,
@@ -101,21 +100,19 @@ CREATE TABLE inspeccion (
 );
 
 CREATE TABLE m_inspecciona (
-    mecanico_dni varchar(8) NOT NULL,
-    inspeccion_nro int NOT NULL
+    mecanico_dni varchar(8) NOT NULL REFERENCES mecanico(dni),
+    inspeccion_nro int NOT NULL REFERENCES inspeccion(nro),
+    PRIMARY KEY (mecanico_dni, inspeccion_nro)
 );
 
-ALTER TABLE m_inspecciona
-ADD CONSTRAINT m_inspecciona_pk PRIMARY KEY (mecanico_dni, inspeccion_nro);
-
 CREATE TABLE m_trabaja (
-    mecanico_dni varchar(8) NOT NULL,
+    mecanico_dni varchar(8) NOT NULL REFERENCES mecanico(dni),
     compra_codigo int NOT NULL,
     serviciopostventa_orden int NOT NULL,
     fecha date NOT NULL,
-    preciomaterial numeric(10,2) NOT NULL
+    preciomaterial numeric(10,2) NOT NULL,
+    PRIMARY KEY (mecanico_dni, compra_codigo, serviciopostventa_orden),
+    FOREIGN KEY (compra_codigo, serviciopostventa_orden) REFERENCES serviciopostventa(compra_codigo, orden)
 );
 
-ALTER TABLE m_trabaja
-ADD CONSTRAINT m_trabaja_pk PRIMARY KEY (mecanico_dni, compra_codigo, serviciopostventa_orden);
 
