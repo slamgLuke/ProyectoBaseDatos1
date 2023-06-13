@@ -60,3 +60,31 @@ ON CO.vehiculo_vin = V.vin
 GROUP BY CL.dni, V.modelo_id
 HAVING COUNT(*) = 2;
 
+
+-- 3)
+-- datos completos de la empresa cuyo representante realizo un suministro y
+-- dicho auto fue inspeccionado por el mecanico con el salario mas alto
+
+SELECT ruc, razonsocial 
+FROM empresa 
+JOIN (SELECT empresa_ruc AS em_ruc 
+        FROM representante 
+        JOIN (SELECT representante_dni
+                FROM suministro 
+                JOIN (SELECT suministro_codigo
+                        FROM vehiculo 
+                        JOIN (SELECT vehiculo_vin
+                                FROM inspeccion 
+                                JOIN (SELECT inspeccion_nro
+                                        FROM m_inspecciona
+                                        WHERE mecanico_dni
+                                        IN (SELECT dni AS dni_max
+                                            FROM mecanico
+                                            WHERE salario =
+                                                    (SELECT MAX(salario)
+                                                        FROM mecanico))) s_max
+                                ON (inspeccion.nro = s_max.inspeccion_nro) ) vin_maxs
+                        ON (vehiculo.vin = vin_maxs.vehiculo_vin)) sum_cod
+                ON (suministro.codigo = sum_cod.suministro_codigo)) rep
+        ON (representante.dni = rep.representante_dni)) emp_ruc_max
+ON (empresa.ruc = emp_ruc_max.em_ruc);
