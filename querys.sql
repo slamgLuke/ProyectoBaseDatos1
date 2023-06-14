@@ -65,26 +65,28 @@ HAVING COUNT(*) = 2;
 -- datos completos de la empresa cuyo representante realizo un suministro y
 -- dicho auto fue inspeccionado por el mecanico con el salario mas alto
 
-SELECT ruc, razonsocial 
-FROM empresa 
-JOIN (SELECT empresa_ruc AS em_ruc 
-        FROM representante 
+SELECT ruc, razonsocial
+FROM empresa
+JOIN (SELECT empresa_ruc AS em_ruc
+        FROM representante
         JOIN (SELECT representante_dni
-                FROM suministro 
-                JOIN (SELECT suministro_codigo
-                        FROM vehiculo 
-                        JOIN (SELECT vehiculo_vin
-                                FROM inspeccion 
-                                JOIN (SELECT inspeccion_nro
+                FROM suministro
+                JOIN (SELECT *
+                        FROM vehiculo
+                        JOIN (SELECT *
+                                FROM inspeccion
+                                JOIN (SELECT *
                                         FROM m_inspecciona
                                         WHERE mecanico_dni
                                         IN (SELECT dni AS dni_max
                                             FROM mecanico
-                                            WHERE salario =
-                                                    (SELECT MAX(salario)
-                                                        FROM mecanico))) s_max
-                                ON (inspeccion.nro = s_max.inspeccion_nro) ) vin_maxs
-                        ON (vehiculo.vin = vin_maxs.vehiculo_vin)) sum_cod
-                ON (suministro.codigo = sum_cod.suministro_codigo)) rep
-        ON (representante.dni = rep.representante_dni)) emp_ruc_max
+                                            WHERE nombres LIKE 'C%' AND salario BETWEEN 100 AND 10000)) inspec_m
+                                ON (inspeccion.nro = inspec_m.inspeccion_nro)
+                                WHERE fecha BETWEEN '05-05-2022' AND '05-05-2023') inspec_con_vin
+                        ON (vehiculo.vin = inspec_con_vin.vehiculo_vin)
+                        WHERE kilometraje BETWEEN  100000 AND 50000) sumin_codigo
+                ON (suministro.codigo = sumin_codigo.suministro_codigo)
+                WHERE sumin_codigo.fecha BETWEEN '05-05-2022' AND '05-05-2023') represent_dni
+        ON (representante.dni = represent_dni.representante_dni)) emp_ruc_max
 ON (empresa.ruc = emp_ruc_max.em_ruc);
+
